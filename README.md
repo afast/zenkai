@@ -10,4 +10,4 @@ El manejo de tickets debe ser extremadamente facil y rapido para que los desarro
 A su vez se quieren obtener reportes por equipo, proyecto y por persona.
 Interesan los tiempos totales y el error en la estimación.
 De alguna manera se debería reflejar que un error ‘x’ para ‘a’ horas reales es peor que
-el mismo error ‘x’ en ‘z’ horas reales. Con y >> z.
+el mismo error ‘x’ para ‘b’ horas reales. Con b >> a.
