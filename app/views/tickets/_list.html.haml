@@ -19,5 +19,4 @@
       %td= ticket.points
       %td= ticket.user_name
       %td
-        = link_to 'Edit', edit_ticket_path(ticket), class: 'btn'
-        = link_to 'Destroy', ticket, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn'
+        = link_to 'Destroy', ticket, remote: true, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn destroy'

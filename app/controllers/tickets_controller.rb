@@ -76,9 +76,13 @@ class TicketsController < ApplicationController
     @ticket = Ticket.find(params[:id])
     @ticket.destroy
 
-    respond_to do |format|
-      format.html { redirect_to tickets_url }
-      format.json { head :no_content }
+    if request.xhr?
+      render nothing: true
+    else
+      respond_to do |format|
+        format.html { redirect_to tickets_url }
+        format.json { head :no_content }
+      end
     end
   end
 
@@ -90,6 +94,11 @@ class TicketsController < ApplicationController
       format.html # index.html.erb
       format.json { render json: @tickets }
     end
+  end
+
+  def list
+    @tickets = Ticket.all
+    render partial: 'list'
   end
 
   private

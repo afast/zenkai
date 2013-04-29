@@ -16,10 +16,17 @@ $ ->
   $('form').on 'ajax:success', ()->
     $('<div></div>', {
       class: 'alert',
-      text: message
-    }).append('<button></button>', {
+      text: 'Operation Successful'
+    }).append($('<button></button>', {
       type: 'button',
       class: 'close',
-      data: { dismiss: 'alert' },
-      text: '&times'
-    })
+      'data-dismiss': 'alert',
+      html: '&times;'
+    })).prependTo '.row'
+
+    $.get '/tickets/list', (data) ->
+      $('#list').html(data)
+
+  $('#list').on 'ajax:success', 'a.destroy', () ->
+    $(this).closest('tr').remove()
+

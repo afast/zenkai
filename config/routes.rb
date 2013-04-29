@@ -6,6 +6,7 @@ Iepc::Application.routes.draw do
   resources :tickets do
     collection do
       get :dashboard
+      get :list
     end
   end
   resources :projects
