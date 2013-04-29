@@ -6,7 +6,6 @@
     %th Name
     %th Estimated hours
     %th Real hours
-    %th Points
     %th User
     %th
 
@@ -16,7 +15,6 @@
       %td= ticket.name
       %td.estimated_hours= best_in_place ticket, :estimated_hours, type: :input, nil: 'In Progress'
       %td.real_hours= best_in_place ticket, :real_hours, type: :input, nil: 'In Progress'
-      %td= ticket.points
-      %td= ticket.user_name
+      %td= friendly_user_name ticket.user
       %td
-        = link_to 'Destroy', ticket, remote: true, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn destroy'
+        = link_to 'Destroy', ticket, remote: true, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn destroy btn-danger'

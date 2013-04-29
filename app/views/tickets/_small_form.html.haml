@@ -7,13 +7,10 @@
           %li= msg
 
   .field
-    = f.label :name
-    = f.text_field :name
+    = f.text_field :name, class: 'input-small', placeholder: 'Ticket'
   .field
-    = f.label :estimated_hours
-    = f.number_field :estimated_hours
+    = f.number_field :estimated_hours, class: 'input-mini', placeholder: 'Estimate'
   .field
-    = f.label :project_id
     = f.select :project_id, options_from_collection_for_select(@projects, :id, :abbreviation)
   .field
     = f.hidden_field :user_id, value: current_user.id

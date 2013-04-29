@@ -5,3 +5,8 @@
 td.real_hours, td.estimated_hours {
   input { width: 40px; }
 }
+
+div#fast_entry {
+  margin-top: 60px;
+  select { width: auto; }
+}
