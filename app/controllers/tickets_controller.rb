@@ -1,5 +1,5 @@
 class TicketsController < ApplicationController
-  before_filter :get_projects, only: [:new, :create, :edit, :update]
+  before_filter :get_projects, only: [:new, :create, :edit, :update, :dashboard]
   # GET /tickets
   # GET /tickets.json
   def index
@@ -79,6 +79,16 @@ class TicketsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to tickets_url }
       format.json { head :no_content }
+    end
+  end
+
+  def dashboard
+    @tickets = Ticket.all
+    @ticket = Ticket.new
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @tickets }
     end
   end
 

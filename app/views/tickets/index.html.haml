@@ -1,26 +1,4 @@
-%h1 Tickets
-
-%table.table.table-condensed.table-striped.table-hover
-  %tr
-    %th Project
-    %th Name
-    %th Estimated minutes
-    %th Real minutes
-    %th Points
-    %th User
-    %th
-
-  - @tickets.each do |ticket|
-    %tr
-      %td= ticket.project_name
-      %td= ticket.name
-      %td= ticket.estimated_minutes
-      %td= ticket.real_minutes
-      %td= ticket.points
-      %td= ticket.user_name
-      %td
-        = link_to 'Edit', edit_ticket_path(ticket), class: 'btn'
-        = link_to 'Destroy', ticket, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn'
+= render 'list'
 
 %br
 
