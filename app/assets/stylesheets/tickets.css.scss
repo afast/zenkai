@@ -7,6 +7,15 @@ td.real_hours, td.estimated_hours {
 }
 
 div#fast_entry {
-  margin-top: 60px;
-  select { width: auto; }
+  select {
+    width: auto;
+    max-width: 104px;
+  }
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  padding: 10px;
+  height: 154px;
+  width: 104px;
+  background-color: #f2f2f2;
 }
