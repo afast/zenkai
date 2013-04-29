@@ -1,0 +1,19 @@
+%h1 Projects
+
+%table.table.table-condensed.table-striped.table-hover
+  %tr
+    %th Name
+    %th Abbreviation
+    %th
+
+  - @projects.each do |project|
+    %tr
+      %td= project.name
+      %td= project.abbreviation
+      %td
+        = link_to 'Edit', edit_project_path(project), class: 'btn'
+        = link_to 'Destroy', project, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn'
+
+%br
+
+= link_to 'New Project', new_project_path, class: 'btn btn-primary'

@@ -1,0 +1,24 @@
+%p#notice= notice
+
+%p
+  %b Project:
+  = @ticket.project_id
+%p
+  %b Name:
+  = @ticket.name
+%p
+  %b Estimated minutes:
+  = @ticket.estimated_minutes
+%p
+  %b Real minutes:
+  = @ticket.real_minutes
+%p
+  %b Points:
+  = @ticket.points
+%p
+  %b User:
+  = @ticket.user_id
+
+= link_to 'Edit', edit_ticket_path(@ticket), class: 'btn'
+\|
+= link_to 'Back', tickets_path, class: 'btn'
