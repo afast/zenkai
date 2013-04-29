@@ -29,6 +29,7 @@ $ ->
 
     $.get '/tickets/list', (data) ->
       $('#list').html(data)
+      $(".best_in_place").best_in_place()
 
   $('#list').on 'ajax:success', 'a.destroy', () ->
     $(this).closest('tr').remove()
