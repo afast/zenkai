@@ -15,7 +15,7 @@
       %td= ticket.project_name
       %td= ticket.name
       %td= ticket.estimated_hours
-      %td= ticket.real_hours || '-'
+      %td.real_hours= best_in_place ticket, :real_hours, type: :input, nil: 'In Progress', helper_options: ticket_path(ticket)
       %td= ticket.points
       %td= ticket.user_name
       %td

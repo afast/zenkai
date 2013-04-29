@@ -3,6 +3,9 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 $ ->
+
+  $(".best_in_place").best_in_place()
+
   $('#ticket_name').on 'keyup', ()->
     project_key = $(this).val().split('-')[0]
     project = $('#ticket_project_id option').filter(()->
