@@ -10,7 +10,10 @@ gem 'sqlite3'
 gem 'devise'
 gem 'haml-rails'
 
+# Inline edition
 gem 'best_in_place'
+# Validating url attributes
+gem 'validate_url'
 
 # Gems used only for assets and not required
 # in production environments by default.

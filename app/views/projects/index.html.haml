@@ -4,12 +4,14 @@
   %tr
     %th Name
     %th Abbreviation
+    %th External Url
     %th
 
   - @projects.each do |project|
     %tr
       %td= project.name
       %td= project.abbreviation
+      %td= project_url_link(project)
       %td
         = link_to 'Edit', edit_project_path(project), class: 'btn'
         = link_to 'Destroy', project, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn'
