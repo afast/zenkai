@@ -23,6 +23,6 @@
     = f.number_field :points
   .field
     = f.label :user_id
-    = f.number_field :user_id
+    = f.select :user_id, options_from_collection_for_select(User.all, :id, :name)
   .actions
     = f.submit 'Save', class: 'btn btn-primary'
