@@ -1,6 +1,6 @@
 = form_tag report_tickets_path, method: :get do
-  = text_field_tag :from, params[:from], type: :date, placeholder: 'Start date'
-  = select_tag :sprint_size, options_for_select((1..4).to_a, params[:sprint_size])
+  = text_field_tag :from, @from.strftime('%Y-%m-%d'), type: :date, placeholder: 'Start date'
+  = select_tag :sprint_size, options_for_select((1..4).to_a, @sprint_size)
   = select_tag :project, options_from_collection_for_select(Project.all, :id, :name, params[:project]), prompt: '(Filter Project)'
   = select_tag :user, options_from_collection_for_select(User.all, :id, :name, params[:user]), prompt: '(Filter User)'
 

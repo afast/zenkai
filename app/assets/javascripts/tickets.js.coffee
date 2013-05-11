@@ -38,3 +38,7 @@ $ ->
     this.form.submit()
   $('select#user').on 'change', ->
     this.form.submit()
+  $('select#sprint_size').on 'change', ->
+    this.form.submit()
+  $('input#from[type="date"]').on 'change', ->
+    this.form.submit()
