@@ -9,7 +9,7 @@
 
   - @tickets.each do |ticket|
     %tr
-      %td= ticket.project_name
+      %td{style: "color: #{ticket.project_color}"}= ticket.project_name
       %td= ticket_link_or_name(ticket)
       %td.estimated_hours= best_in_place ticket, :estimated_hours, type: :input, nil: 'In Progress'
       %td.real_hours= best_in_place ticket, :real_hours, type: :input, nil: 'In Progress'

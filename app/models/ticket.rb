@@ -10,6 +10,7 @@ class Ticket < ActiveRecord::Base
     end
     with_options prefix: true do |ticket|
       ticket.delegate :name, to: :project
+      ticket.delegate :color, to: :project
       ticket.delegate :name, to: :user
     end
   end

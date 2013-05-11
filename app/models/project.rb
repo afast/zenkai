@@ -3,7 +3,7 @@ class Project < ActiveRecord::Base
 
   validates :url, url: { allow_nil: true, message: "Invalid URL, make sure to include 'http://' at the beginning" }
 
-  attr_accessible :abbreviation, :name, :url
+  attr_accessible :abbreviation, :name, :url, :color
 
   def short_name
     abbreviation

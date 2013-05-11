@@ -8,7 +8,7 @@
     %th
 
   - @projects.each do |project|
-    %tr
+    %tr{style: "color: #{project.color}"}
       %td= project.name
       %td= project.abbreviation
       %td= project_url_link(project)
