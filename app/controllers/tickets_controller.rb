@@ -3,12 +3,22 @@ class TicketsController < ApplicationController
   # GET /tickets
   # GET /tickets.json
   def index
-    @tickets = Ticket.all
+    @tickets = Ticket
+    @tickets = @tickets.where(project_id: params[:project]) if params[:project].present?
+    @tickets = @tickets.where(user_id: params[:user]) if params[:user].present?
+    @tickets = @tickets.all
 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @tickets }
     end
+  end
+
+  def report
+    scope = Ticket
+    scope = scope.where(project_id: params[:project]) if params[:project].present?
+    scope = scope.where(user_id: params[:user]) if params[:user].present?
+    @sprints = Ticket.report scope, DateTime.parse(params[:from]), params[:sprint_size].to_i
   end
 
   # GET /tickets/1

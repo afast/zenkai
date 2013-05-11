@@ -7,6 +7,7 @@ Iepc::Application.routes.draw do
     collection do
       get :dashboard
       get :list
+      get :report
     end
   end
   resources :projects

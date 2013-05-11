@@ -34,3 +34,7 @@ $ ->
   $('#list').on 'ajax:success', 'a.destroy', () ->
     $(this).closest('tr').remove()
 
+  $('select#project').on 'change', ->
+    this.form.submit()
+  $('select#user').on 'change', ->
+    this.form.submit()

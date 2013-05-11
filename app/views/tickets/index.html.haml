@@ -1,5 +1,10 @@
 %h1 Tickets
 
+= form_tag tickets_path, method: :get do
+  = select_tag :project, options_from_collection_for_select(Project.all, :id, :name, params[:project]), prompt: '(Filter Project)'
+  = select_tag :user, options_from_collection_for_select(User.all, :id, :name, params[:user]), prompt: '(Filter User)'
+  = text_field_tag :description, params[:description], placeholder: 'Description'
+
 = render 'list'
 
 %br
