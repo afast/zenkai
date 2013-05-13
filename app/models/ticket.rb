@@ -14,6 +14,8 @@ class Ticket < ActiveRecord::Base
 
   attr_accessible :estimated_hours, :name, :points, :project_id, :real_hours, :user_id
 
+  after_initialize :set_type_from_project
+
   with_options allow_nil: true do |ticket|
     with_options prefix: false do |ticket|
       ticket.delegate :belongs_to_external_project?, to: :project
@@ -25,8 +27,25 @@ class Ticket < ActiveRecord::Base
     end
   end
 
+  class << self
+
+    def report(initial_scope, from_date, sprint_weeks)
+      from_date ||= DateTime.now.beginning_of_week
+      sprint_weeks ||= 1
+      tickets = []
+      now = DateTime.now
+      while from_date < now
+        to_date = from_date + sprint_weeks.weeks
+        tickets << Sprint.new(initial_scope.complete.in_range from_date, to_date)
+        from_date = to_date
+      end
+      tickets
+    end
+
+  end
+
   def valid_external_url?
-    belongs_to_external_project? && project_abbreviation_matches_name?
+    belongs_to_external_project?
   end
 
   def url
@@ -45,23 +64,15 @@ class Ticket < ActiveRecord::Base
     end
   end
 
-  def self.report(initial_scope, from_date, sprint_weeks)
-    from_date ||= DateTime.now.beginning_of_week
-    sprint_weeks ||= 1
-    tickets = []
-    now = DateTime.now
-    while from_date < now
-      to_date = from_date + sprint_weeks.weeks
-      tickets << Sprint.new(initial_scope.complete.in_range from_date, to_date)
-      from_date = to_date
-    end
-    tickets
-  end
-
   private
 
-  def project_abbreviation_matches_name?
-    name.split('-').first == project.abbreviation
+  def set_type_from_project
+    if new_record?
+      split_namespace = project.class.to_s.split('::')
+      split_namespace.pop
+      split_namespace << self.class.to_s unless split_namespace.blank?
+      self.type = split_namespace.join('::')
+    end
   end
 
 end

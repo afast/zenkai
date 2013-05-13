@@ -10,6 +10,9 @@
     = f.label :name
     = f.text_field :name
   .field
+    = f.label :type, 'Project Type'
+    = f.select :type, [['Other', ''], ['Jira', 'Jira::Project']]
+  .field
     = f.label :abbreviation
     = f.text_field :abbreviation
   .field
