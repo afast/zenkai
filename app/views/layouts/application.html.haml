@@ -21,7 +21,7 @@
           %li
             %span.user-name= current_user.full_name
           %li= link_to 'Sign Out', destroy_session_path(current_user), method: :delete
-  .row
+  .row.row-fluid.span9
     - if notice
       %p.alert.alert-info= notice
     - if alert
