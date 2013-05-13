@@ -40,6 +40,8 @@ class Ticket < ActiveRecord::Base
   def percent_error
     if real_hours.present? && estimated_hours.present?
       '%.2f' % (((real_hours - estimated_hours) / estimated_hours)*100)
+    else
+      0.0
     end
   end
 
