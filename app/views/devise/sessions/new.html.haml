@@ -1,21 +1,25 @@
 = content_for :css do
   = stylesheet_link_tag :devise
 
-%h2 Sign in
+.login-header
+  %img{src: "/mooveit.png"}
 
-= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  %div
-    = f.label :email
-    = f.email_field :email
+.login-big
+  %h2 Sign in
 
-  %div
-    = f.label :password
-    = f.password_field :password
+  = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+    %div
+      = f.label :email
+      = f.email_field :email
 
-  - if devise_mapping.rememberable?
-    .remember-me= f.check_box :remember_me
-    = f.label :remember_me
+    %div
+      = f.label :password
+      = f.password_field :password
 
-  %div= f.submit "Sign in", class: 'btn btn-primary'
+    - if devise_mapping.rememberable?
+      .remember-me= f.check_box :remember_me
+      = f.label :remember_me
 
-= render "devise/shared/links"
+    %div= f.submit "Sign in", class: 'btn btn-primary'
+
+  = render "devise/shared/links"

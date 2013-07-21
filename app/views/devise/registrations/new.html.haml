@@ -1,23 +1,25 @@
-%h2 Sign up
-= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-  = devise_error_messages!
+.login-header
+  %img{src: "/mooveit.png"}
 
-  %div
-    = f.label :email
-    %br
-    = f.email_field :email, autofocus: true
+.login-big
+  %h2 Sign up
+  = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+    = devise_error_messages!
 
-  %div
-    = f.label :password
-    %br
-    = f.password_field :password
+    %div
+      = f.label :email
+      %br
+      = f.email_field :email, autofocus: true
 
-  %div
-    = f.label :password_confirmation
-    %br
-    = f.password_field :password_confirmation
+    %div
+      = f.label :password
+      = f.password_field :password
 
-  %div
-    = f.submit "Sign up", class: 'btn btn-primary'
+    %div
+      = f.label :password_confirmation
+      = f.password_field :password_confirmation
 
-= render "devise/shared/links"
+    %div
+      = f.submit "Sign up", class: 'btn btn-primary'
+
+  = render "devise/shared/links"
