@@ -2,14 +2,14 @@
 
 %table.table.table-condensed.table-striped.table-hover
   %tr
-    %th Email
     %th Name
+    %th Email
     %th
 
   - @users.each do |user|
     %tr
-      %td= user.email
       %td= user.name
+      %td= user.email
       %td
         = link_to 'Edit', edit_user_path(user), class: 'btn btn-primary'
         = link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn'

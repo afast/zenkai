@@ -13,6 +13,6 @@ class Project < ActiveRecord::Base
   end
 
   def belongs_to_external_project?
-    url.present?
+    url.present? && url!=''
   end
 end
