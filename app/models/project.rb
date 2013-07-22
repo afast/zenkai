@@ -1,5 +1,6 @@
 class Project < ActiveRecord::Base
   has_many :tickets
+  has_and_belongs_to_many :users
 
   validates :url, url: { allow_blank: true, message: "Invalid URL, make sure to include 'http://' at the beginning" }
 
