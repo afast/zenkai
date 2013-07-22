@@ -5,13 +5,12 @@ gem 'rails', '3.2.13'
 # Bundle edge Rails instead:
 # gem 'rails', git: 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
-
 gem 'devise'
 gem 'haml-rails'
 
 # Inline edition
 gem 'best_in_place'
+
 # Validating url attributes
 gem 'validate_url'
 
@@ -31,10 +30,16 @@ gem 'jquery-rails'
 
 group :development do
   gem 'puma'
+  gem 'sqlite3'
 end
 
 group :test do
   gem 'factory_girl_rails'
+end
+
+group :production do
+  gem 'thin'
+  gem 'pg'
 end
 
 # To use ActiveModel has_secure_password
