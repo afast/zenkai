@@ -1,14 +1,18 @@
 = javascript_include_tag 'report'
 = stylesheet_link_tag 'report'
 
-.row-fluid.span11
-  .span7
-    = form_tag report_tickets_path, method: :get do
-      = text_field_tag :from, @from.strftime('%Y-%m-%d'), type: :date, placeholder: 'Start date', class: 'input-medium'
-      = select_tag :sprint_size, options_for_select((1..4).to_a, @sprint_size), class: 'input-small'
-      = select_tag :project, options_from_collection_for_select(Project.all, :id, :name, params[:project]), prompt: '(Filter Project)'
-      = select_tag :user, options_from_collection_for_select(User.all, :id, :name, params[:user]), prompt: '(Filter User)'
-
+%h1.title Reports
+.row
+  .col-lg-12
+    = form_tag report_tickets_path, method: :get, class: "form-inline" do
+      .row
+        %h5.col-lg-1 Filter
+        .col-lg-3= text_field_tag :from, @from.strftime('%Y-%m-%d'), type: :date, placeholder: 'Start date'
+        .col-lg-2= select_tag :sprint_size, options_for_select((1..4).to_a, @sprint_size), class: 'input-small'
+        .col-lg-3= select_tag :project, options_from_collection_for_select(Project.all, :id, :name, params[:project]), prompt: '(Filter Project)'
+        .col-lg-3= select_tag :user, options_from_collection_for_select(User.all, :id, :name, params[:user]), prompt: '(Filter User)'
+.row
+  .col-lg-12
     %table.table.table-condensed.table-striped.table-hover
       %tr
         %th Project
@@ -38,6 +42,7 @@
             %td= "Deviation: #{sprint.total_deviation}"
             %td= "Error: #{sprint.total_error_to_s}%"
             %td
-  .span4
+.row
+  .col-lg-12
     #error{data: {error: [@sprints.collect(&:total_error)]} }
     #deviation{data: {deviation: [@sprints.collect(&:total_deviation)]}}

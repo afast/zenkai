@@ -1,5 +1,6 @@
-%h1 Editing project
-
-= render 'form'
-
-= link_to 'Back', projects_path, class: 'btn'
+%h1.title Editing project
+.row
+  .col-lg-12
+    = render 'form'
+    %hr
+    = link_to 'Back', projects_path, class: 'btn'

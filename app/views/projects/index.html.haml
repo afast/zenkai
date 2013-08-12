@@ -1,23 +1,26 @@
 %p#notice= notice
 
-%h1 Projects
+%h1.title Projects
+.row
+  .col-lg-12
+    %table.table.table-condensed.table-striped.table-hover
+      %tr
+        %th Name
+        %th Abbreviation
+        %th External Url
+        %th
 
-%table.table.table-condensed.table-striped.table-hover
-  %tr
-    %th Name
-    %th Abbreviation
-    %th External Url
-    %th
+      - @projects.each do |project|
+        %tr
+          %td
+            %i.icon-circle{style: "color: #{project.color}"}
+            = project.name
+          %td= project.abbreviation
+          %td= project_url_link(project)
+          %td
+            = link_to 'Edit', edit_project_path(project), class: 'btn btn-primary btn-xs'
+            = link_to content_tag(:i, "", class: "icon-remove") + ' Destroy', project, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs'
 
-  - @projects.each do |project|
-    %tr{style: "color: #{project.color}"}
-      %td= project.name
-      %td= project.abbreviation
-      %td= project_url_link(project)
-      %td
-        = link_to 'Edit', edit_project_path(project), class: 'btn btn-primary'
-        = link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn'
+    %hr
 
-%br
-
-= link_to 'New Project', new_project_path, class: 'btn btn-primary'
+    = link_to content_tag(:i, "", class: "icon-archive")+' New Project', new_project_path, class: 'btn btn-primary btn-lg'

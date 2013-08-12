@@ -6,13 +6,13 @@
         - @ticket.errors.full_messages.each do |msg|
           %li= msg
 
-  .field
-    = f.text_field :name, class: 'input-small', placeholder: 'Ticket'
-  .field
-    = f.number_field :estimated_hours, class: 'input-mini', placeholder: 'Estimate'
-  .field
-    = f.select :project_id, options_from_collection_for_select(@projects, :id, :abbreviation)
-  .field
+  .form-group
+    = f.text_field :name, class: 'form-control', placeholder: 'Ticket'
+  .form-group
+    = f.number_field :estimated_hours, class: 'form-control', placeholder: 'Estimate'
+  .form-group
+    = f.select :project_id, options_from_collection_for_select(@projects, :id, :abbreviation),{:class => 'form-control'}
+  .form-group
     = f.hidden_field :user_id, value: current_user.id
   .actions
-    = f.submit 'Save', class: 'btn btn-primary'
+    = f.submit 'Save', class: 'btn btn-success'
