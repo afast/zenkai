@@ -123,8 +123,7 @@ class TicketsController < ApplicationController
     @tickets = current_user.tickets.pending
     @ticket = Ticket.new
 
-    @pending = Ticket.pending_estimate.joins('LEFT OUTER JOIN user_ticket_estimates ON tickets.id = user_ticket_estimates.ticket_id')
-                    .where('user_ticket_estimates.user_id <> ?', current_user.id)
+    @pending = Ticket.pending_estimate.where('id NOT IN (?)', current_user.user_ticket_estimates.pluck(:ticket_id))
 
     respond_to do |format|
       format.html # index.html.erb

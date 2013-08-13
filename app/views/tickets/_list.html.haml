@@ -18,5 +18,6 @@
       %td.real_hours= best_in_place ticket, :real_hours, type: :input, nil: 'In Progress'
       %td.user= best_in_place ticket, :user_id, type: :select, collection: User.all.map {|u| [u.id, u.full_name]} + [['', '(unassigned)']], display_with: lambda { |t| friendly_user_name(User.find(t)) }
       %td
+        = link_to content_tag(:i, "", class: "icon-edit") + ' Edit', edit_ticket_path(ticket), remote: true, method: :get, data: { confirm: 'Are you sure?' }, class: 'btn destroy btn-danger btn-xs'
         = link_to content_tag(:i, "", class: "icon-remove") + ' Destroy', ticket, remote: true, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn destroy btn-danger btn-xs'
         = link_to content_tag(:i, "", class: "icon-ticket") + ' Re-estimate', re_estimate_ticket_path(ticket), remote: true, method: :put, class: 'btn btn-primary btn-xs'
