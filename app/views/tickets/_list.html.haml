@@ -9,10 +9,12 @@
 
   - @tickets.each do |ticket|
     %tr
-      %td{ style: "color: #{ticket.project_color}" }= ticket.project_name
+      %td
+        %i.icon-circle{style: "color: #{ticket.project.color}"}
+        = ticket.project_name
       %td= ticket_link_or_name(ticket)
       %td.estimated_hours= best_in_place ticket, :estimated_hours, type: :input, nil: 'In Progress'
       %td.real_hours= best_in_place ticket, :real_hours, type: :input, nil: 'In Progress'
       %td= friendly_user_name ticket.user
       %td
-        = link_to 'Destroy', ticket, remote: true, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn destroy btn-danger'
+        = link_to content_tag(:i, "", class: "icon-remove") + ' Destroy', ticket, remote: true, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn destroy btn-danger btn-xs'

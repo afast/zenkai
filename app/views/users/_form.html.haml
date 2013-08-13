@@ -8,14 +8,11 @@
       %ul
         - @user.errors.full_messages.each do |msg|
           %li= msg
-
-  .field
-    = f.label :email
-    %br
-    = f.text_field :email
-  .field
-    = f.label :name
-    %br
-    = f.text_field :name
-  .actions
+  .form-group
+    = f.label :email, class: "label-control"
+    = f.text_field :email, class: "form-control"
+  .form-group
+    = f.label :name, class: "label-control"
+    = f.text_field :name, class: "form-control"
+  .form-group
     = f.submit class: 'btn btn-primary'

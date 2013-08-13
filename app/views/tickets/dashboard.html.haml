@@ -1,8 +1,4 @@
-%h1 Dashboard
-
-.row-fluid
-  #list.span9
-    = render 'list'
-  .span1
-    #fast_entry
-      = render 'small_form'
+%h1.title Dashboard
+.row
+  .col-lg-8= render 'list'
+  .col-lg-4= render 'small_form'
