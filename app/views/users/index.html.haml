@@ -1,15 +1,16 @@
-%h1 Listing users
+%h1.title Listing users
+.row
+  .col-lg-12
+    %table.table.table-condensed.table-striped.table-hover
+      %tr
+        %th Name
+        %th Email
+        %th
 
-%table.table.table-condensed.table-striped.table-hover
-  %tr
-    %th Name
-    %th Email
-    %th
-
-  - @users.each do |user|
-    %tr
-      %td= user.name
-      %td= user.email
-      %td
-        = link_to 'Edit', edit_user_path(user), class: 'btn btn-primary'
-        = link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn'
+      - @users.each do |user|
+        %tr
+          %td= user.name
+          %td= user.email
+          %td
+            = link_to content_tag(:i, "", class: "icon-edit") + ' Edit', edit_user_path(user), class: 'btn btn-primary btn-xs'
+            = link_to content_tag(:i, "", class: "icon-remove") + ' Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs '

@@ -1,0 +1,96 @@
+#error_explanation{@extend .alert;@extend .alert-danger;h1,h2,h3,h4,h5,h6{@extend p;font-size:1em;font-weight:700}ul{@extend .list-unstyled}}
+
+select, input[type="date"]{
+    @extend .form-control;
+}
+i.icon-circle{
+    margin-right: 3px;
+    text-shadow: 0 0 2px, #555;
+}
+
+html{
+    @include linear-gradient(to bottom right, $blue, $info);
+    background-repeat: no-repeat;
+    height: 100%;
+    body{
+        background-color: transparent;
+        &.landing {
+            position: relative;
+            > div{
+                #iepc{
+                    @include iepc(1.5,$position:absolute);
+                    margin: 3em;
+                    top: 0;
+                    left: 0;
+                }
+                width: 50%;
+                height: auto;
+                position: fixed;
+                top: 25%;
+                left: 25%;
+            }
+            .login{
+                @include border-left-radius(1em);
+                @include border-right-radius(1em);
+                background: #fff url("/mooveit.png") no-repeat 2em 90%;
+                background-size: auto 2em;
+                .wrapper{
+                    padding-left: 40%;
+                    padding-bottom: 1em;
+                }
+            }
+        }
+    }
+}
+
+.navbar{
+    #iepc{
+        @include iepc($position:relative)
+    }
+    a{
+        @include transition(color);
+        color: #555;
+        &:hover{
+            color: #000;
+        }
+        i{
+            @include transition(color);
+            color: $blue;
+        }
+    }
+    a:hover i{
+        opacity: 1;
+        color: $warning;
+    }
+    height: 3em;
+    margin-bottom: 2em;
+}
+
+h1.title{
+    @extend .container;
+    color: #fff;
+    text-shadow: -1px -1px 0 rgba(#000, .5);
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 1.5em;
+}
+
+.logged .container{
+    > div{
+        margin-left: 9em;
+        > .row{
+            background: #fff;
+            @include border-top-radius(.5em);
+            @include border-bottom-radius(.5em);
+            padding: 2em 0;
+            & + .row{
+                margin-top: 1em;
+            }
+            > .alert{
+                margin-left: 1em;
+                margin-right: 1em;
+            }
+        }
+    }
+}
+

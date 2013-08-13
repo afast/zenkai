@@ -1,4 +1,4 @@
-= form_for @ticket do |f|
+= form_for @ticket, :html => {class: "form-horizontal"} do |f|
   - if @ticket.errors.any?
     #error_explanation
       %h2= "#{pluralize(@ticket.errors.count, "error")} prohibited this ticket from being saved:"
@@ -6,23 +6,23 @@
         - @ticket.errors.full_messages.each do |msg|
           %li= msg
 
-  .field
-    = f.label :project_id
-    = f.select :project_id, options_from_collection_for_select(@projects, :id, :name)
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :estimated_hours
-    = f.number_field :estimated_hours
-  .field
-    = f.label :real_hours
-    = f.number_field :real_hours
-  .field
-    = f.label :points
-    = f.number_field :points
-  .field
-    = f.label :user_id
-    = f.select :user_id, options_from_collection_for_select(User.all, :id, :name)
-  .actions
-    = f.submit 'Save', class: 'btn btn-primary'
+  .form-group
+    = f.label :project_id, class: "col-lg-2 control-label"
+    .col-lg-8= f.select :project_id, options_from_collection_for_select(@projects, :id, :name)
+  .form-group
+    = f.label :name, class: "col-lg-2 control-label"
+    .col-lg-8= f.text_field :name, class: "form-control"
+  .form-group
+    = f.label :estimated_hours, class: "col-lg-2 control-label"
+    .col-lg-8= f.number_field :estimated_hours, class: "form-control"
+  .form-group
+    = f.label :real_hours, class: "col-lg-2 control-label"
+    .col-lg-8= f.number_field :real_hours, class: "form-control"
+  .form-group
+    = f.label :points, class: "col-lg-2 control-label"
+    .col-lg-8= f.number_field :points, class: "form-control"
+  .form-group
+    = f.label :user_id, class: "col-lg-2 control-label"
+    .col-lg-8= f.select :user_id, options_from_collection_for_select(User.all, :id, :name), class: "form-control"
+  .col-lg-offset-2
+    = f.submit 'Save', class: 'btn btn-success'

@@ -1,4 +1,4 @@
-= form_for @project do |f|
+= form_for @project, :html => {class: "form-horizontal"} do |f|
   - if @project.errors.any?
     #error_explanation
       %h2= "#{pluralize(@project.errors.count, "error")} prohibited this project from being saved:"
@@ -6,20 +6,20 @@
         - @project.errors.full_messages.each do |msg|
           %li= msg
 
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :type, 'Project Type'
-    = f.select :type, [['Other', ''], ['Jira', 'Jira::Project']]
-  .field
-    = f.label :abbreviation
-    = f.text_field :abbreviation
-  .field
-    = f.label :url
-    = f.text_field :url
-  .field
-    = f.label :color
-    = f.text_field :color, type: 'color'
-  .actions
-    = f.submit 'Save', class: 'btn btn-primary'
+  .form-group
+    = f.label :name, class: "col-lg-2 control-label"
+    .col-lg-8= f.text_field :name, class: "form-control"
+  .form-group
+    = f.label :type, 'Project Type', class: "col-lg-2 control-label"
+    .col-lg-8= f.select :type, [['Other', ''], ['Jira', 'Jira::Project']]
+  .form-group
+    = f.label :abbreviation, class: "col-lg-2 control-label"
+    .col-lg-8= f.text_field :abbreviation, class: "form-control"
+  .form-group
+    = f.label :url, class: "col-lg-2 control-label"
+    .col-lg-8= f.text_field :url, class: "form-control"
+  .form-group
+    = f.label :color, class: "col-lg-2 control-label"
+    .col-lg-2= f.text_field :color, type: 'color', class: "form-control"
+  .col-lg-offset-2
+    = f.submit 'Save', class: 'btn btn-success'

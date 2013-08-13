@@ -6,23 +6,21 @@
   = javascript_include_tag "application"
   = csrf_meta_tags
 
-%body
-  - if controller_name == 'sessions' || controller_name == 'registrations' || controller_name == 'passwords'
-    .login-background
+%body{ :class => ( (controller_name == 'sessions' || controller_name == 'registrations' || controller_name == 'passwords')? "landing" : "logged" ) }
   - if current_user
-    .navbar
-      .navbar-inner
-        %a.brand{href: "#"}
-        %ul.nav
-          %li= link_to 'Home', :root
-          %li= link_to 'Users', users_path
-          %li= link_to 'Tickets', tickets_path
-          %li= link_to 'Projects', projects_path
-          %li= link_to 'Reports', report_tickets_path
-        %ul.nav.pull-right
-
-          %li= link_to current_user.full_name, :root
-          %li= link_to 'Sign Out', destroy_session_path(current_user), method: :delete
-  .row.row-fluid.span9
-
-    = yield
+    %div
+      .navbar
+        .container
+          %a.navbar-brand{href: "#"}
+            #iepc
+          %ul.nav.navbar-nav
+            %li= link_to content_tag(:i, "", class: "icon-home")+' Home', :root
+            %li= link_to content_tag(:i, "", class: "icon-user")+' Users', users_path
+            %li= link_to content_tag(:i, "", class: "icon-ticket")+' Tickets', tickets_path
+            %li= link_to content_tag(:i, "", class: "icon-archive")+' Projects', projects_path
+            %li= link_to content_tag(:i, "", class: "icon-file-text")+' Reports', report_tickets_path
+          %ul.nav.navbar-nav.pull-right
+            %li= link_to current_user.full_name, :root
+            %li= link_to content_tag(:i, "", class: "icon-signout")+' Sign Out', destroy_session_path(current_user), method: :delete
+  .container
+    %div= yield

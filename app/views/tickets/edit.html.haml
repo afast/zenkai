@@ -1,5 +1,6 @@
-%h1 Editing ticket
-
-= render 'form'
-
-= link_to 'Back', tickets_path, class: 'btn'
+%h1.title Editing ticket
+.row
+  .col-lg-12
+    = render 'form'
+    %hr
+    = link_to 'Back', tickets_path, class: 'btn'
