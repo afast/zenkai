@@ -98,9 +98,33 @@ class TicketsController < ApplicationController
     end
   end
 
+  def estimate
+    ticket = Ticket.find(params[:id])
+    tue = ticket.user_ticket_estimates.where(user_id: current_user.id).first
+    tue = ticket.user_ticket_estimates.create(user_id: current_user.id) unless tue
+    respond_to do |format|
+      if tue.update_attributes(params[:ticket])
+        format.html { redirect_to ticket, notice: 'Estimate was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: tue.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def re_estimate
+    ticket = Ticket.find(params[:id])
+    ticket.estimate if ticket
+    render nothing: true
+  end
+
   def dashboard
-    @tickets = Ticket.all
+    @tickets = current_user.tickets.pending
     @ticket = Ticket.new
+
+    @pending = Ticket.pending_estimate.joins('LEFT OUTER JOIN user_ticket_estimates ON tickets.id = user_ticket_estimates.ticket_id')
+                    .where('user_ticket_estimates.user_id <> ?', current_user.id)
 
     respond_to do |format|
       format.html # index.html.erb

@@ -1,4 +1,7 @@
 %h1.title Dashboard
+-if @pending.size > 0
+  .row
+    .col-lg-8= render 'pending_estimate'
 .row
   .col-lg-8= render 'list'
   .col-lg-4= render 'small_form'

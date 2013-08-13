@@ -9,7 +9,12 @@ Iepc::Application.routes.draw do
       get :list
       get :report
     end
+    member do
+      put :estimate
+      put :re_estimate
+    end
   end
   resources :projects
   resources :users
+  resources :user_ticket_estimates
 end

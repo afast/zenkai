@@ -9,7 +9,7 @@
   .form-group
     = f.text_field :name, class: 'form-control', placeholder: 'Ticket'
   .form-group
-    = f.number_field :estimated_hours, class: 'form-control', placeholder: 'Estimate'
+    = f.number_field :points, class: 'form-control', placeholder: 'Estimate'
   .form-group
     = f.select :project_id, options_from_collection_for_select(@projects, :id, :abbreviation),{:class => 'form-control'}
   .form-group

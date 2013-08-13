@@ -1,0 +1,19 @@
+%table.table.table-condensed.table-striped.table-hover
+  %caption Pending Estimates
+  %tr
+    %th Project
+    %th Name
+    %th Points
+    %th User
+    %th
+
+  - @pending.each do |ticket|
+    %tr
+      %td
+        %i.icon-circle{style: "color: #{ticket.project.color}"}
+        = ticket.project_name
+      %td= ticket_link_or_name(ticket)
+      %td.points= best_in_place ticket, :points, type: :input, nil: 'Not Estimated', path: estimate_ticket_path(ticket)
+      %td= friendly_user_name ticket.user
+      %td
+        = link_to content_tag(:i, "", class: "icon-remove") + ' Destroy', ticket, remote: true, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn destroy btn-danger btn-xs'
