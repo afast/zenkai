@@ -125,7 +125,7 @@ class TicketsController < ApplicationController
 
     @pending = Ticket.pending_estimate
     estimated = current_user.user_ticket_estimates.pluck(:ticket_id)
-    @pending.where('id NOT IN (?)', estimated) if estimated.any?
+    @pending = @pending.where('id NOT IN (?)', estimated) if estimated.any?
 
     respond_to do |format|
       format.html # index.html.erb
