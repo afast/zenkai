@@ -67,6 +67,7 @@ class Ticket < ActiveRecord::Base
             else
               self.points = estimate
             end
+            break
           end
         end
       end
