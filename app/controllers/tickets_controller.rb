@@ -133,6 +133,18 @@ class TicketsController < ApplicationController
     end
   end
 
+  def pending
+    @tickets = current_user.tickets.pending
+    render partial: 'list', dashboard: true
+  end
+
+  def estimate_pending
+    @pending = Ticket.pending_estimate
+    estimated = current_user.user_ticket_estimates.pluck(:ticket_id)
+    @pending = @pending.where('id NOT IN (?)', estimated) if estimated.any?
+    render partial: 'pending_estimate'
+  end
+
   def list
     @tickets = Ticket.all
     render partial: 'list'

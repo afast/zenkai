@@ -1,7 +1,7 @@
 %h1.title Dashboard
--if @pending.size > 0
+-if @pending.any?
   .row
-    .col-lg-8= render 'pending_estimate'
+    .col-lg-10= render 'pending_estimate'
 .row
-  .col-lg-8= render 'list'
-  .col-lg-4= render 'small_form'
+  .col-lg-10= render 'list', dashboard: true
+  .col-lg-2= render 'small_form'

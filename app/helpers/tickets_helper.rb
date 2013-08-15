@@ -10,9 +10,18 @@ module TicketsHelper
 
   def ticket_link_or_name(ticket)
     if ticket.valid_external_url?
-      link_to ticket.name, ticket.url
+      link_to ticket.name, ticket.url, target: '_blank'
     else
       ticket.name
+    end
+  end
+
+  def estimated_by(ticket)
+    estimates = ticket.user_ticket_estimates.map { |ute| ute.user.full_name }
+    if estimates.any?
+      "Estimated by #{estimates.to_sentence}"
+    else
+      'No estimates available'
     end
   end
 

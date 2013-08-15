@@ -1,4 +1,5 @@
 class Project < ActiveRecord::Base
+  PROJECT_TYPES = [['Other', ''], ['Jira', 'Jira::Project'], ['Basecamp', 'Basecamp::Project']]
   has_many :tickets
   has_and_belongs_to_many :users
 

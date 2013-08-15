@@ -1,0 +1,15 @@
+$ ->
+  $(document).on 'ajax:success', '.best_in_place', ()->
+    $table = $(this).closest('table')
+    refreshTable $table
+
+  $(document).on 'ajax:success', '.restimate', ()->
+    $table = $(this).closest('table')
+    refreshTable $table
+
+  refreshTable = ($table) ->
+    if $table.data('path')
+      $.get $table.data('path'), (data)->
+        $table.replaceWith data
+        $('.best_in_place').best_in_place()
+

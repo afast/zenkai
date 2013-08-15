@@ -17,6 +17,7 @@ $ ->
 
 
   $('form').on 'ajax:success', ()->
+    $('.alert').remove
     $('<div></div>', {
       class: 'alert',
       text: 'Operation Successful'

@@ -7,6 +7,8 @@ Iepc::Application.routes.draw do
     collection do
       get :dashboard
       get :list
+      get :pending
+      get :estimate_pending
       get :report
     end
     member do
