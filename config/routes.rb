@@ -19,4 +19,9 @@ Iepc::Application.routes.draw do
   resources :projects
   resources :users
   resources :user_ticket_estimates
+  resources :sprints do
+    collection do
+      get :report
+    end
+  end
 end

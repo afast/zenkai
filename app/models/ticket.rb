@@ -2,6 +2,7 @@ class Ticket < ActiveRecord::Base
   VALID_ESTIMATES = [1,2,3,5,8]
   belongs_to :project
   belongs_to :user
+  belongs_to :sprint
   has_many :user_ticket_estimates
 
   before_save :calculate_completed, if: :real_hours_changed?
@@ -21,7 +22,7 @@ class Ticket < ActiveRecord::Base
     where('completed_at >= ? and completed_at <= ?', date_from, date_to)
   }
 
-  attr_accessible :estimated_hours, :name, :points, :project_id, :real_hours, :user_id
+  attr_accessible :estimated_hours, :name, :points, :project_id, :real_hours, :user_id, :sprint_id
 
   after_initialize :set_type_from_project
 
@@ -95,6 +96,10 @@ class Ticket < ActiveRecord::Base
     else
       0.0
     end
+  end
+
+  def velocity
+    points / real_hours if real_hours && points && real_hours > 0
   end
 
   private

@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Start:
+  = @sprint.start
+%p
+  %b End:
+  = @sprint.end
+
+= link_to 'Edit', edit_sprint_path(@sprint)
+\|
+= link_to 'Back', sprints_path

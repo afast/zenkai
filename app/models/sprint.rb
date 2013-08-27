@@ -1,17 +1,20 @@
-class Sprint
-  attr_reader :total_deviation, :total_hours, :total_estimate, :total_error, :tickets
+class Sprint < ActiveRecord::Base
+  attr_accessible :end, :start
+  has_many :tickets
 
-  def initialize(tickets)
-    tickets = [] unless tickets.present?
-    tickets.compact!
-    @tickets = tickets
-    @total_hours = tickets.collect(&:real_hours).compact.inject(:+) || 0
-    @total_estimate = tickets.collect(&:estimated_hours).compact.inject(:+) || 1
-    @total_deviation = @total_hours - @total_estimate
-    @total_error = (@total_deviation / @total_estimate) * 100
+  def date_span
+    "#{start.to_date} - #{self.end.to_date}"
   end
 
-  def total_error_to_s
-    '%.2f' % @total_error
+  def total_hours
+    @total_hours ||= tickets.collect(&:real_hours).compact.inject(:+)
+  end
+
+  def total_estimate
+    @total_estimate ||= tickets.collect(&:points).compact.inject(:+)
+  end
+
+  def total_velocity
+    @total_velocity ||= total_estimate / total_hours.to_f
   end
 end

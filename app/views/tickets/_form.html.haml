@@ -10,6 +10,9 @@
     = f.label :project_id, class: "col-lg-2 control-label"
     .col-lg-8= f.select :project_id, options_from_collection_for_select(@projects, :id, :name)
   .form-group
+    = f.label :sprint_id, class: "col-lg-2 control-label"
+    .col-lg-8= f.select :sprint_id, options_from_collection_for_select(Sprint.all, :id, :date_span)
+  .form-group
     = f.label :name, class: "col-lg-2 control-label"
     .col-lg-8= f.text_field :name, class: "form-control"
   .form-group

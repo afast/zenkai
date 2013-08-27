@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130813054740) do
+ActiveRecord::Schema.define(:version => 20130827002825) do
 
   create_table "projects", :force => true do |t|
     t.string   "name"
@@ -31,6 +31,13 @@ ActiveRecord::Schema.define(:version => 20130813054740) do
 
   add_index "projects_users", ["project_id", "user_id"], :name => "index_projects_users_on_project_id_and_user_id"
 
+  create_table "sprints", :force => true do |t|
+    t.datetime "start"
+    t.datetime "end"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "tickets", :force => true do |t|
     t.integer  "project_id"
     t.string   "name"
@@ -42,6 +49,7 @@ ActiveRecord::Schema.define(:version => 20130813054740) do
     t.float    "estimated_hours"
     t.string   "type"
     t.datetime "completed_at"
+    t.integer  "sprint_id"
   end
 
   create_table "user_ticket_estimates", :force => true do |t|

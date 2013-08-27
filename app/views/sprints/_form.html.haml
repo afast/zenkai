@@ -1,0 +1,16 @@
+= form_for @sprint do |f|
+  - if @sprint.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@sprint.errors.count, "error")} prohibited this sprint from being saved:"
+      %ul
+        - @sprint.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :start
+    = f.datetime_select :start
+  .field
+    = f.label :end
+    = f.datetime_select :end
+  .actions
+    = f.submit 'Save'
