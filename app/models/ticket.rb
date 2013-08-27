@@ -86,7 +86,7 @@ class Ticket < ActiveRecord::Base
   end
 
   def deviation
-    real_hours - estimated_hours
+    (real_hours || 0) - (estimated_hours || 0)
   end
 
   def percent_error
