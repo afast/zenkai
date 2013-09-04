@@ -20,7 +20,7 @@
             %li= link_to content_tag(:i, "", class: "icon-user")+' Users', users_path
             %li= link_to content_tag(:i, "", class: "icon-ticket")+' Tickets', tickets_path
             %li= link_to content_tag(:i, "", class: "icon-archive")+' Projects', projects_path
-            %li= link_to content_tag(:i, "", class: "icon-file-text")+' Reports', report_tickets_path
+            %li= link_to content_tag(:i, "", class: "icon-file-text")+' Reports', report_sprints_path
           %ul.nav.navbar-nav.pull-right
             %li= link_to current_user.full_name, :root
             %li= link_to content_tag(:i, "", class: "icon-signout")+' Sign Out', destroy_session_path(current_user), method: :delete

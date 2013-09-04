@@ -11,11 +11,12 @@ class SprintsController < ApplicationController
   end
 
   def report
+    @conditions = {}
+    @conditions['tickets.project_id'] = params[:project] if params[:project].present?
+    @conditions['tickets.user_id'] = params[:user] if params[:user].present?
     scope = Sprint.includes(:tickets)
-    scope = scope.where(project_id: params[:project]) if params[:project].present?
-    scope = scope.where(user_id: params[:user]) if params[:user].present?
-    @from = params[:from].blank? ? (DateTime.now - 1.week) : DateTime.parse(params[:from])
-    @sprints = scope.where('start >= ? ', @from) #Ticket.report scope, @from, @sprint_size
+    scope = scope.where('sprints.id' => params[:sprint]) if params[:sprint].present?
+    @sprints = scope.where(@conditions)
   end
 
   # GET /sprints/1

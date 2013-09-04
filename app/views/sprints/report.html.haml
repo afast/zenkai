@@ -7,8 +7,7 @@
     = form_tag report_sprints_path, method: :get, class: "form-inline" do
       .row
         %h5.col-lg-1 Filter
-        .col-lg-3= text_field_tag :from, @from.strftime('%Y-%m-%d'), type: :date, placeholder: 'Start date'
-        .col-lg-2= select_tag :sprint_size, options_for_select((1..4).to_a, @sprint_size), class: 'input-small'
+        .col-lg-2= select_tag :sprint, options_from_collection_for_select(Sprint.all, :id, :name, params[:sprint]), prompt: '(Select Sprint)'
         .col-lg-3= select_tag :project, options_from_collection_for_select(Project.all, :id, :name, params[:project]), prompt: '(Filter Project)'
         .col-lg-3= select_tag :user, options_from_collection_for_select(User.all, :id, :name, params[:user]), prompt: '(Filter User)'
 .row
@@ -23,7 +22,7 @@
       - @sprints.each_with_index do |sprint, index|
         %tr.info
           %td{colspan: 5}= sprint_info params[:from], params[:sprint_size], index + 1
-        - sprint.tickets.each do |ticket|
+        - sprint.tickets.where(@conditions).complete.each do |ticket|
           %tr
             %td{style: "color: #{ticket.project_color}"}= ticket.project_name
             %td= ticket_link_or_name(ticket)
@@ -36,7 +35,26 @@
         - else
           %tr.success
             %td= 'Summary'
-            %td= "Points: #{sprint.total_estimate}"
-            %td= "Hours: #{sprint.total_hours}"
-            %td= "Velocity: #{sprint.total_velocity} p/h"
+            %td= "Points: #{sprint.total_estimate(@conditions)}"
+            %td= "Hours: #{sprint.total_hours(@conditions)}"
+            %td= "Velocity: #{'%.2f' % sprint.total_velocity(@conditions)} p/h"
             %td
+#chart_data{ data: get_chart_data(@sprints) }
+.row
+  .col-lg-12
+    #hours_per_project
+.row
+  .col-lg-12
+    #hour_distribution
+.row
+  .col-lg-12
+    #points_per_project
+.row
+  .col-lg-12
+    #points_distribution
+.row
+  .col-lg-12
+    #velocity_per_project
+.row
+  .col-lg-12
+    #tickets_per_project

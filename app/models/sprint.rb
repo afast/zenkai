@@ -6,15 +6,19 @@ class Sprint < ActiveRecord::Base
     "#{start.to_date} - #{self.end.to_date}"
   end
 
-  def total_hours
-    @total_hours ||= tickets.collect(&:real_hours).compact.inject(:+)
+  def total_hours(conditions = {})
+    tickets.where(conditions).complete.collect(&:real_hours).compact.inject(:+)
   end
 
-  def total_estimate
-    @total_estimate ||= tickets.collect(&:points).compact.inject(:+)
+  def total_estimate(conditions = {})
+    tickets.where(conditions).complete.collect(&:points).compact.inject(:+)
   end
 
-  def total_velocity
-    @total_velocity ||= total_estimate / total_hours.to_f
+  def total_velocity(conditions = {})
+    total_estimate(conditions) / total_hours(conditions).to_f
+  end
+
+  def name
+    "#{start.strftime('%m/%d/%y')} - #{self.end.strftime('%m/%d/%y')}"
   end
 end
