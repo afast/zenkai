@@ -1,4 +1,4 @@
-= form_for @ticket, :html => {class: "form-horizontal"} do |f|
+= form_for @ticket, html: { class: "form-horizontal" } do |f|
   - if @ticket.errors.any?
     #error_explanation
       %h2= "#{pluralize(@ticket.errors.count, "error")} prohibited this ticket from being saved:"
@@ -8,10 +8,10 @@
 
   .form-group
     = f.label :project_id, class: "col-lg-2 control-label"
-    .col-lg-8= f.select :project_id, options_from_collection_for_select(@projects, :id, :name)
+    .col-lg-8= f.select :project_id, options_from_collection_for_select(@projects, :id, :name, @ticket.project_id)
   .form-group
     = f.label :sprint_id, class: "col-lg-2 control-label"
-    .col-lg-8= f.select :sprint_id, options_from_collection_for_select(Sprint.all, :id, :date_span)
+    .col-lg-8= f.select :sprint_id, options_from_collection_for_select(Sprint.all, :id, :date_span, @ticket.sprint_id)
   .form-group
     = f.label :name, class: "col-lg-2 control-label"
     .col-lg-8= f.text_field :name, class: "form-control"
@@ -26,6 +26,6 @@
     .col-lg-8= f.number_field :points, class: "form-control"
   .form-group
     = f.label :user_id, class: "col-lg-2 control-label"
-    .col-lg-8= f.select :user_id, options_from_collection_for_select(User.all, :id, :name), class: "form-control"
+    .col-lg-8= f.select :user_id, options_from_collection_for_select(User.all, :id, :name, @ticket.user_id), include_blank: 'Unassigned', class: "form-control"
   .col-lg-offset-2
     = f.submit 'Save', class: 'btn btn-success'

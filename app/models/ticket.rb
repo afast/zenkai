@@ -23,6 +23,8 @@ class Ticket < ActiveRecord::Base
     where('completed_at >= ? and completed_at <= ?', date_from, date_to)
   }
 
+  validates_presence_of :name, :project
+
   attr_accessible :estimated_hours, :name, :points, :project_id, :real_hours, :user_id, :sprint_id
 
   after_initialize :set_type_from_project
