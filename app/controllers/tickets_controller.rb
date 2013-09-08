@@ -3,7 +3,7 @@ class TicketsController < ApplicationController
   # GET /tickets
   # GET /tickets.json
   def index
-    @tickets = Ticket
+    @tickets = Ticket.by_created_at_desc
     @tickets = @tickets.where(project_id: params[:project]) if params[:project].present?
     @tickets = @tickets.where(user_id: params[:user]) if params[:user].present?
     @tickets = @tickets.all

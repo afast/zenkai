@@ -11,6 +11,7 @@ class Ticket < ActiveRecord::Base
   scope :pending_estimate, where(points: nil)
   scope :pending, where(real_hours: nil)
   scope :done, where(Ticket.arel_table[:real_hours].not_eq(nil))
+  scope :by_created_at_desc, order('created_at DESC')
   scope :complete, Ticket.estimated.done
   scope :from_date, -> date_from {
     where('created_at >= ? and created_at <= ?', date_from, DateTime.now) if date_from.present?
