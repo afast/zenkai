@@ -121,7 +121,7 @@ class TicketsController < ApplicationController
 
   def dashboard
     @tickets = current_user.tickets.pending
-    @ticket = Ticket.new
+    @ticket = Ticket.new(sprint: Sprint.current!)
 
     @pending = Ticket.pending_estimate
     estimated = current_user.user_ticket_estimates.pluck(:ticket_id)

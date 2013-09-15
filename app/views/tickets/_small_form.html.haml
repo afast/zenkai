@@ -9,10 +9,10 @@
   .form-group
     = f.text_field :name, class: 'form-control', placeholder: 'Ticket'
   .form-group
-    = f.number_field :points, class: 'form-control', placeholder: 'Estimate'
+    = f.select :project_id, options_from_collection_for_select(@projects, :id, :abbreviation), { class: 'form-control' }
   .form-group
-    = f.select :project_id, options_from_collection_for_select(@projects, :id, :abbreviation),{:class => 'form-control'}
+    = f.select :user_id, options_from_collection_for_select(User.all, :id, :name, @ticket.user_id), include_blank: 'Unassigned'
   .form-group
-    = f.hidden_field :user_id, value: current_user.id
+    = f.hidden_field :sprint_id, value: @ticket.sprint.try(:id)
   .actions
     = f.submit 'Save', class: 'btn btn-success'
