@@ -25,7 +25,7 @@ class Ticket < ActiveRecord::Base
 
   validates_presence_of :name, :project
 
-  attr_accessible :estimated_hours, :name, :points, :project_id, :real_hours, :user_id, :sprint_id
+  attr_accessible :estimated_hours, :name, :points, :project_id, :real_hours, :user_id, :sprint_id, :sprint
 
   after_initialize :set_type_from_project
 

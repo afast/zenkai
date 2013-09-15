@@ -37,7 +37,7 @@ class TicketsController < ApplicationController
   # GET /tickets/new
   # GET /tickets/new.json
   def new
-    @ticket = Ticket.new
+    @ticket = Ticket.new(sprint: Sprint.current!)
 
     respond_to do |format|
       format.html # new.html.erb
@@ -60,7 +60,7 @@ class TicketsController < ApplicationController
         format.html { redirect_to @ticket, notice: 'Ticket was successfully created.' }
         format.json { render json: @ticket, status: :created, location: @ticket }
       else
-        format.html { render action: "new" }
+        format.html { render action: 'new' }
         format.json { render json: @ticket.errors, status: :unprocessable_entity }
       end
     end
@@ -76,7 +76,7 @@ class TicketsController < ApplicationController
         format.html { redirect_to @ticket, notice: 'Ticket was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        format.html { render action: 'edit' }
         format.json { render json: @ticket.errors, status: :unprocessable_entity }
       end
     end
@@ -107,7 +107,7 @@ class TicketsController < ApplicationController
         format.html { redirect_to ticket, notice: 'Estimate was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        format.html { render action: 'edit' }
         format.json { render json: tue.errors, status: :unprocessable_entity }
       end
     end
@@ -151,6 +151,7 @@ class TicketsController < ApplicationController
   end
 
   private
+
   def get_projects
     @projects = Project.all
   end
