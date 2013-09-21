@@ -30,15 +30,17 @@ class Sprint < ActiveRecord::Base
   end
 
   def total_hours(conditions = {})
-    tickets.where(conditions).complete.collect(&:real_hours).compact.inject(:+)
+    tickets.where(conditions).complete.collect(&:real_hours).compact.inject(:+) || 0
   end
 
   def total_estimate(conditions = {})
-    tickets.where(conditions).complete.collect(&:points).compact.inject(:+)
+    tickets.where(conditions).complete.collect(&:points).compact.inject(:+) || 0
   end
 
   def total_velocity(conditions = {})
-    total_estimate(conditions) / total_hours(conditions).to_f
+    hours = total_hours(conditions)
+    return 0 if hours.zero?
+    total_estimate(conditions) / hours.to_f
   end
 
   def name
