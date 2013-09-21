@@ -2,6 +2,8 @@ class Sprint < ActiveRecord::Base
   DEFAULT_DURATION = 2.weeks - 1.day
 
   has_many :tickets
+
+  scope :sorted, order('start DESC')
   validates_presence_of :start, :end
   attr_accessible :end, :start
 

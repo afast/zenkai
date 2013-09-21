@@ -22,8 +22,17 @@ class Ticket < ActiveRecord::Base
   scope :completed_in_range, -> date_from, date_to {
     where('completed_at >= ? and completed_at <= ?', date_from, date_to)
   }
+  scope :for_sprint, -> sprint {
+    where(sprint_id: sprint)
+  }
+  scope :for_project, -> project {
+    where(project_id: project)
+  }
+  scope :for_user, -> user {
+    where(user_id: user)
+  }
 
-  validates_presence_of :name, :project
+  validates_presence_of :name, :project, :sprint
 
   attr_accessible :estimated_hours, :name, :points, :project_id, :real_hours, :user_id, :sprint_id, :sprint
 

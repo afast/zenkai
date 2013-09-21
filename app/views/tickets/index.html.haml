@@ -4,9 +4,10 @@
     = form_tag tickets_path, class: "form-inline", method: :get do
       .row
         %h5.col-lg-1 Filters:
+        .col-lg-3= select_tag :sprint, options_from_collection_for_select(Sprint.sorted, :id, :name, @sprint)
         .col-lg-2= select_tag :project, options_from_collection_for_select(Project.all, :id, :name, params[:project]), prompt: '(Filter Project)'
         .col-lg-2= select_tag :user, options_from_collection_for_select(User.all, :id, :name, params[:user]), prompt: '(Filter User)'
-        .col-lg-4= text_field_tag :description, params[:description], placeholder: 'Description', class: "form-control"
-        .col-lg-2.pull-right= link_to content_tag(:i, "", class: "icon-ticket") + ' New Ticket', new_ticket_path, class: 'btn btn-primary btn-lg'
+        .col-lg-2= text_field_tag :description, params[:description], placeholder: 'Description', class: "form-control"
+        .col-lg-2.pull-right= link_to content_tag(:i, "", class: "icon-ticket") + ' New Ticket', new_ticket_path, class: 'btn btn-primary btn-small'
 .row
   .col-lg-12= render 'list'
