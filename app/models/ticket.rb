@@ -96,7 +96,7 @@ class Ticket < ActiveRecord::Base
   end
 
   def url
-    "#{project.url.split('/').join('/')}-#{name.split('-').last}"
+    "#{project.url.split('/').join('/')}-#{name.split('-').last}".split(' ').first
   end
 
   def deviation
