@@ -32,6 +32,7 @@ gem 'jquery-rails'
 group :development do
   gem 'puma'
   gem 'sqlite3'
+  gem 'debugger'
 end
 
 group :test do
