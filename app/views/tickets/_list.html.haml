@@ -29,4 +29,4 @@
           = link_to content_tag(:i, "", class: "icon-ticket restimate") + ' Re-estimate', re_estimate_ticket_path(ticket), remote: true, method: :put, class: 'btn btn-primary btn-xs re-estimate'
         = link_to content_tag(:i, "", class: "icon-edit") + ' Edit', edit_ticket_path(ticket), class: 'btn btn-info btn-xs'
         - unless dashboard
-          = link_to content_tag(:i, "", class: "icon-remove") + ' Destroy', ticket, remote: true, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn destroy btn-danger btn-xs'
+          = link_to content_tag(:i, "", class: "icon-remove") + ' Destroy', ticket, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn destroy btn-danger btn-xs'
