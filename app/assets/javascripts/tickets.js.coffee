@@ -4,6 +4,18 @@
 
 $ ->
 
+  toggleAlert = (msg) ->
+    $('.alert').remove()
+    $('<div></div>', {
+      class: 'alert',
+      text: msg
+    }).append($('<button></button>', {
+      type: 'button',
+      class: 'close',
+      'data-dismiss': 'alert',
+      html: '&times;'
+    })).prependTo $('#pending_estimate').closest('.row')
+
   $(".best_in_place").best_in_place()
 
   $('#ticket_name').on 'keyup', ()->
@@ -21,20 +33,14 @@ $ ->
       $(".best_in_place").best_in_place()
 
   $('form').on 'ajax:success', ()->
-    $('.alert').remove()
-    $('<div></div>', {
-      class: 'alert',
-      text: 'Operation Successful'
-    }).append($('<button></button>', {
-      type: 'button',
-      class: 'close',
-      'data-dismiss': 'alert',
-      html: '&times;'
-    })).prependTo $('#pending_estimate').closest('.row')
+    toggleAlert('Operation Successful')
 
     $.get $('#pending_estimate').data('path'), (data) ->
       $('#pending_estimate').html(data)
       $(".best_in_place").best_in_place()
+
+  $('form').on 'ajax:error', ()->
+    toggleAlert('Something went wrong')
 
   $('#list').on 'ajax:success', 'a.destroy', () ->
     $(this).closest('tr').remove()

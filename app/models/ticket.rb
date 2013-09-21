@@ -33,6 +33,7 @@ class Ticket < ActiveRecord::Base
   }
 
   validates_presence_of :name, :project, :sprint
+  validates_uniqueness_of :name
 
   attr_accessible :estimated_hours, :name, :points, :project_id, :real_hours, :user_id, :sprint_id, :sprint
 

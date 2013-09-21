@@ -1,4 +1,4 @@
-= form_for @ticket, remote: true do |f|
+= form_for @ticket, remote: true, html: { 'data-type' => 'json' } do |f|
   - if @ticket.errors.any?
     #error_explanation
       %h2= "#{pluralize(@ticket.errors.count, "error")} prohibited this ticket from being saved:"
