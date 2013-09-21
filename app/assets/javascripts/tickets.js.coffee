@@ -15,9 +15,13 @@ $ ->
     if project
       $('#ticket_project_id').val project
 
+  $('.re-estimate').on 'ajax:success', () ->
+    $.get $('#pending').data('path'), (data) ->
+      $('#pending').html(data)
+      $(".best_in_place").best_in_place()
 
   $('form').on 'ajax:success', ()->
-    $('.alert').remove
+    $('.alert').remove()
     $('<div></div>', {
       class: 'alert',
       text: 'Operation Successful'
@@ -26,10 +30,10 @@ $ ->
       class: 'close',
       'data-dismiss': 'alert',
       html: '&times;'
-    })).prependTo '.row'
+    })).prependTo $('#pending_estimate').closest('.row')
 
-    $.get '/tickets/list', (data) ->
-      $('#list').html(data)
+    $.get $('#pending_estimate').data('path'), (data) ->
+      $('#pending_estimate').html(data)
       $(".best_in_place").best_in_place()
 
   $('#list').on 'ajax:success', 'a.destroy', () ->

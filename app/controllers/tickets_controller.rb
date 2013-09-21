@@ -114,7 +114,7 @@ class TicketsController < ApplicationController
 
   def re_estimate
     ticket = Ticket.find(params[:id])
-    ticket.estimate if ticket
+    ticket.estimate! if ticket
     render nothing: true
   end
 
@@ -134,7 +134,7 @@ class TicketsController < ApplicationController
 
   def pending
     @tickets = current_user.tickets.pending
-    render partial: 'list', locals: {dashboard: true}
+    render partial: 'list', locals: { dashboard: true }
   end
 
   def estimate_pending
