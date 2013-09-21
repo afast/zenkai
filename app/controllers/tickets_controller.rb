@@ -100,15 +100,14 @@ class TicketsController < ApplicationController
 
   def estimate
     ticket = Ticket.find(params[:id])
-    tue = ticket.user_ticket_estimates.where(user_id: current_user.id).first
-    tue = ticket.user_ticket_estimates.create(user_id: current_user.id) unless tue
+    points = params[:ticket].presence.try(:[], :points)
     respond_to do |format|
-      if tue.update_attributes(params[:ticket])
+      if current_user.estimate!(ticket, points)
         format.html { redirect_to ticket, notice: 'Estimate was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
-        format.json { render json: tue.errors, status: :unprocessable_entity }
+        format.json { render json: {}.to_json, status: :unprocessable_entity }
       end
     end
   end

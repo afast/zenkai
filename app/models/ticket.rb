@@ -55,7 +55,7 @@ class Ticket < ActiveRecord::Base
     end
   end
 
-  def estimate
+  def estimate!
     if user_ticket_estimates.count >= project.min_estimates.to_i
       estimates = user_ticket_estimates.collect(&:points)
       avg = estimates.compact.sum / estimates.size.to_f
@@ -64,9 +64,9 @@ class Ticket < ActiveRecord::Base
       elsif avg >= VALID_ESTIMATES.last
         self.points = VALID_ESTIMATES.last
       else
-        VALID_ESTIMATES.each_with_index do |i, estimate|
+        VALID_ESTIMATES.each_with_index do |estimate, i|
           if avg >= estimate && avg <= VALID_ESTIMATES[i+1]
-            if (avg >= estimate + (VALID_ESTIMATES[i+1] - estimate)/2)
+            if avg >= estimate + (VALID_ESTIMATES[i+1] - estimate)/2
               self.points = VALID_ESTIMATES[i+1]
             else
               self.points = estimate

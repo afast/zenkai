@@ -48,4 +48,10 @@ class User < ActiveRecord::Base
   def full_name
     name || email
   end
+
+  def estimate!(ticket, points)
+    tue = user_ticket_estimates.for_ticket(ticket).first_or_initialize
+    tue.points = points
+    tue.save
+  end
 end

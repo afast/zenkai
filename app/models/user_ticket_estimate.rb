@@ -7,11 +7,16 @@ class UserTicketEstimate < ActiveRecord::Base
   belongs_to :user
   belongs_to :ticket
 
+  scope :for_ticket, lambda { |ticket| where(ticket_id: ticket) }
+
   attr_accessible :estimated_hours, :name, :points, :project_id, :real_hours, :user_id
+
+  validates_presence_of :user, :ticket, :points
+
   delegate :name, :project_id, :real_hours, to: :ticket, prefix: false, allow_nil: true
   delegate :full_name, to: :user, prefix: true, allow_nil: true
 
   def update_ticket
-    ticket.estimate
+    ticket.estimate!
   end
 end
