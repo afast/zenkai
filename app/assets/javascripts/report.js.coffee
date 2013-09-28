@@ -11,8 +11,7 @@ $ ->
     tooltipAxes: 'y',
     useAxesFormatters: false,
     tooltipFormatString: '%f p/h',
-    fadeTooltip: true,
-    tooltipOffset: 4
+    fadeTooltip: true
   }
 
   data = $('div#chart_data').data()
