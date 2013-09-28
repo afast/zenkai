@@ -100,7 +100,10 @@ $ ->
           },
           yaxis: {
             pad: 1.05,
-            tickOptions: {formatString: '%d p'}
+            tickOptions: {formatString: '%d p/h'},
+            min: 0,
+            tickInterval: 1
+
           }
         }
       }
