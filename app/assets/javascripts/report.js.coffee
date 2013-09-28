@@ -3,8 +3,18 @@
 #= require plugins/jqplot.pieRenderer.min
 #= require plugins/jqplot.categoryAxisRenderer.min
 #= require plugins/jqplot.pointLabels.min
+#= require plugins/jqplot.highlighter.min
 
 $ ->
+  defaultHighlighterOptions = {
+    show: true,
+    tooltipAxes: 'y',
+    useAxesFormatters: false,
+    tooltipFormatString: '%f p/h',
+    fadeTooltip: true,
+    tooltipOffset: 4
+  }
+
   data = $('div#chart_data').data()
   if $('#hours_per_project').size() > 0
     $.jqplot 'hours_per_project',
@@ -28,7 +38,8 @@ $ ->
             pad: 1.05,
             tickOptions: {formatString: '%d h'}
           }
-        }
+        },
+        highlighter: defaultHighlighterOptions
       }
 
   if $('#hour_distribution').size() > 0
@@ -65,7 +76,8 @@ $ ->
             pad: 1.05,
             tickOptions: {formatString: '%d p'}
           }
-        }
+        },
+        highlighter: defaultHighlighterOptions
       }
 
   if $('#points_distribution').size() > 0
@@ -103,9 +115,9 @@ $ ->
             tickOptions: {formatString: '%d p/h'},
             min: 0,
             tickInterval: 1
-
           }
-        }
+        },
+        highlighter: defaultHighlighterOptions
       }
 
   if $('#tickets_per_project').size() > 0
