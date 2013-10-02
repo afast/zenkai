@@ -17,6 +17,13 @@ class SprintsController < ApplicationController
     scope = Sprint.includes(:tickets)
     scope = scope.where('sprints.id' => params[:sprint]) if params[:sprint].present?
     @sprints = scope.where(@conditions)
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: 'Sprint Report',
+          disposition: 'attachment', page_size: 'A4'
+      end
+    end
   end
 
   # GET /sprints/1

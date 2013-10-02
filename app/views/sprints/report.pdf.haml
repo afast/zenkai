@@ -1,16 +1,8 @@
-= javascript_include_tag 'report'
-= stylesheet_link_tag 'report'
+= wicked_pdf_stylesheet_link_tag    "application", media: "all"
+= wicked_pdf_javascript_include_tag "application"
+= wicked_pdf_javascript_include_tag 'report'
+= wicked_pdf_stylesheet_link_tag 'report'
 
-%h1.title Reports
-.row
-  .col-lg-12
-    = form_tag report_sprints_path, method: :get, class: "form-inline" do
-      .row
-        %h5.col-lg-1 Filter
-        .col-lg-2= select_tag :sprint, options_from_collection_for_select(Sprint.all, :id, :name, params[:sprint]), prompt: '(Select Sprint)'
-        .col-lg-3= select_tag :project, options_from_collection_for_select(Project.all, :id, :name, params[:project]), prompt: '(Filter Project)'
-        .col-lg-3= select_tag :user, options_from_collection_for_select(User.all, :id, :name, params[:user]), prompt: '(Filter User)'
-        .col-lg-2= link_to 'PDF', params.merge(format: 'pdf'), class: 'btn btn-primary'
 .row
   .col-lg-12
     %table.table.table-condensed.table-striped.table-hover
@@ -21,7 +13,7 @@
         %th User
 
       - @sprints.each_with_index do |sprint, index|
-        %tr.info
+        %tr.info.nobreak
           %td{colspan: 5}= sprint_info params[:from], params[:sprint_size], index + 1
         - sprint.tickets.where(@conditions).complete.each do |ticket|
           %tr
@@ -41,21 +33,21 @@
             %td= "Velocity: #{'%.2f' % sprint.total_velocity(@conditions)} p/h"
             %td
 #chart_data{ data: get_chart_data(@sprints) }
-.row
+.row.nobreak.extra_padding
   .col-lg-12
     #hours_per_project
-.row
+.row.nobreak.extra_padding
   .col-lg-12
     #hour_distribution
-.row
+.row.nobreak.extra_padding
   .col-lg-12
     #points_per_project
-.row
+.row.nobreak.extra_padding
   .col-lg-12
     #points_distribution
-.row
+.row.nobreak.extra_padding
   .col-lg-12
     #velocity_per_project
-.row
+.row.nobreak.extra_padding
   .col-lg-12
     #tickets_per_project

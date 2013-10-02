@@ -11,6 +11,9 @@ gem 'haml-rails'
 # Inline edition
 gem 'best_in_place'
 
+# export pdf
+gem 'wicked_pdf'
+
 # Validating url attributes
 gem 'validate_url'
 
@@ -42,6 +45,7 @@ end
 group :production do
   gem 'thin'
   gem 'pg'
+  gem 'wkhtmltopdf-heroku'
 end
 
 # To use ActiveModel has_secure_password
