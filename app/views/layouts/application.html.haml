@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 %html
 %head
-  %title IEPC
+  %title Zenkai
   = stylesheet_link_tag    "application", media: "all"
   = javascript_include_tag "application"
   = csrf_meta_tags
@@ -12,7 +12,7 @@
       .navbar
         .container
           %a.navbar-brand{href: "#"}
-            #iepc
+            #zenkai
           %ul.nav.navbar-nav
             %li= link_to content_tag(:i, "", class: "icon-home")+' Home', :root
             %li= link_to content_tag(:i, "", class: "icon-ticket")+' My Estimates', user_ticket_estimates_path(user_id: current_user.id)

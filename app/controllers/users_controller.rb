@@ -10,6 +10,13 @@ class UsersController < ApplicationController
     end
   end
 
+  def approve
+    if current_user.admin?
+      User.find(params[:id]).update_attributes approved: true
+    end
+    redirect_to users_path
+  end
+
   # GET /users/1/edit
   def edit
     @user = User.find(params[:id])

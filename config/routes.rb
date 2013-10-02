@@ -1,4 +1,4 @@
-Iepc::Application.routes.draw do
+Zenkai::Application.routes.draw do
   root to: 'tickets#dashboard'
 
   devise_for :users
@@ -17,7 +17,11 @@ Iepc::Application.routes.draw do
     end
   end
   resources :projects
-  resources :users
+  resources :users do
+    member do
+      post :approve
+    end
+  end
   resources :user_ticket_estimates
   resources :sprints do
     collection do

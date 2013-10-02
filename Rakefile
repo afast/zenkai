@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Iepc::Application.load_tasks
+Zenkai::Application.load_tasks
