@@ -22,16 +22,16 @@
 
       - @sprints.each_with_index do |sprint, index|
         %tr.info
-          %td{colspan: 5}= sprint_info params[:from], params[:sprint_size], index + 1
+          %td{colspan: 4}= sprint_info params[:from], params[:sprint_size], index + 1
         - sprint.tickets.where(@conditions).complete.each do |ticket|
           %tr
             %td{style: "color: #{ticket.project_color}"}= ticket.project_name
             %td= ticket_link_or_name(ticket)
-            %td= ticket.velocity
+            %td= '%.2f' % ticket.velocity
             %td= friendly_user_name ticket.user
         - if sprint.tickets.empty?
           %tr.error
-            %td{colspan: 5}
+            %td{colspan: 4}
               = 'No tickets for this sprint!'
         - else
           %tr.success
