@@ -15,4 +15,10 @@ module SprintsHelper
       tickets_per_project: [projects.map { |p| [p.name, (sprints.map { |s| s.tickets.complete.where(project_id: p.id).count }.inject(:+) / total_tickets.to_f) * 100] }]
     }
   end
+
+  def get_sprint_history
+    {
+      velocity: Sprint.all.collect(&:total_velocity)
+    }
+  end
 end

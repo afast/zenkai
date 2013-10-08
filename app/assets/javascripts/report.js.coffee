@@ -130,3 +130,15 @@ $ ->
       },
       legend: { show:true, location: 'e' }
     }
+
+  if $('#velocity_history').size() > 0
+    $.jqplot 'velocity_history', [$('#velocity_history').data('velocity')], {
+      title: 'Velocity over time',
+      seriesDefaults: {
+        renderer: jQuery.jqplot.LineRenderer,
+        rendererOptions: {
+          showDataLabels: true
+        }
+      },
+      legend: { show:true, location: 'e' }
+    }
