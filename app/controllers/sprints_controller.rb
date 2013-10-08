@@ -20,7 +20,7 @@ class SprintsController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        render pdf: 'Sprint Report',
+        render pdf: 'Sprint Report', layout: false,
           disposition: 'attachment', page_size: 'A4'
       end
     end
