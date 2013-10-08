@@ -1,3 +1,12 @@
+setTitle = () ->
+  pending = $('table#pending_estimate tr').size() - 1
+  pending = 0 if pending < 0
+  if pending > 0
+    $(document).prop('title', "(#{pending}) Zenkai")
+  else
+    $(document).prop('title', "Zenkai")
+
+
 $ ->
   $(document).on 'ajax:success', '.best_in_place', ()->
     $table = $(this).closest('table')
@@ -12,4 +21,11 @@ $ ->
       $.get $table.data('path'), (data)->
         $table.replaceWith data
         $('.best_in_place').best_in_place()
+    setTitle()
 
+  setInterval () ->
+    refreshTable $('table#pending_estimate')
+    refreshTable $('table#pending')
+  , 300000
+
+  setTitle()
