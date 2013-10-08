@@ -26,7 +26,7 @@ $ ->
       $.get $table.data('path'), (data)->
         $table.replaceWith data
         $('.best_in_place').best_in_place()
-    setTitle()
+        setTitle()
 
   setInterval () ->
     refreshTable $('table#pending_estimate')
