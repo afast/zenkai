@@ -6,6 +6,7 @@ setTitle = () ->
   else
     $(document).prop('title', "Zenkai")
 
+  $('head link').remove()
   if pending > 9
     $('head').append($('<link rel="icon" type="image/ico" href="favicon9+.ico"/>'))
   else
