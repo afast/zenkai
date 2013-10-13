@@ -77,7 +77,9 @@ class UserTicketEstimatesController < ApplicationController
   # DELETE /user_ticket_estimates/1.json
   def destroy
     @user_ticket_estimate = UserTicketEstimate.find(params[:id])
+    ticket = @user_ticket_estimate.ticket
     @user_ticket_estimate.destroy
+    current_user.estimate! ticket
 
     respond_to do |format|
       format.html { redirect_to user_ticket_estimates_url }

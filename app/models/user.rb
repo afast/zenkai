@@ -49,10 +49,19 @@ class User < ActiveRecord::Base
     name || email
   end
 
-  def estimate!(ticket, points)
-    tue = user_ticket_estimates.for_ticket(ticket).first_or_initialize
-    tue.points = points
-    tue.save
+  def estimate!(ticket)
+    puts user_ticket_estimates.inspect
+    estimates = user_ticket_estimates.for_ticket(ticket.id).pluck :points
+    if estimates.size > 0
+      ticket.points = estimation(estimates.sum / estimates.size, estimates)
+    else
+      ticket.points = nil
+    end
+    ticket.save!
+  end
+
+  def estimation(value, array)
+    array.min{|a,b|  (value-a).abs <=> (value-b).abs }
   end
 
   def active_for_authentication?

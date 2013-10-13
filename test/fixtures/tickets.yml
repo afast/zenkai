@@ -3,15 +3,11 @@
 one:
   project_id: 1
   name: MyString
-  estimated_minutes: 1
-  real_minutes: 1
   points: 1
   user_id: 1
 
 two:
   project_id: 1
   name: MyString
-  estimated_minutes: 1
-  real_minutes: 1
   points: 1
   user_id: 1

@@ -102,7 +102,7 @@ class TicketsController < ApplicationController
     ticket = Ticket.find(params[:id])
     points = params[:ticket].presence.try(:[], :points)
     respond_to do |format|
-      if current_user.estimate!(ticket, points)
+      if current_user.user_ticket_estimates.create(ticket_id: ticket.id, points: points)
         format.html { redirect_to ticket, notice: 'Estimate was successfully updated.' }
         format.json { head :no_content }
       else
