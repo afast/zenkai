@@ -120,6 +120,7 @@ class TicketsController < ApplicationController
 
   def dashboard
     @tickets = current_user.tickets.pending
+    @current_tickets = current_user.tickets.for_sprint(Sprint.current!.id)
     @ticket = Ticket.new(sprint: Sprint.current!)
 
     @pending = Ticket.pending_estimate
@@ -130,6 +131,11 @@ class TicketsController < ApplicationController
       format.html # index.html.erb
       format.json { render json: @tickets }
     end
+  end
+
+  def current
+    @current_tickets = current_user.tickets.for_sprint(Sprint.current!.id)
+    render partial: 'current_sprint'
   end
 
   def pending

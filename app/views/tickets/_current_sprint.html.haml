@@ -1,0 +1,22 @@
+%table#current.table.table-condensed.table-striped.table-hover{'data-path' => current_tickets_path}
+  %caption Current Sprint
+  %tr
+    %th Project
+    %th Name
+    %th Points
+    %th Real hours
+    %th User
+    %th
+
+  - @current_tickets.each do |ticket|
+    %tr
+      %td
+        %i.icon-circle{style: "color: #{ticket.project.color}"}
+        = ticket.project_name
+      %td= ticket_link_or_name(ticket)
+      %td= ticket.points || content_tag(:span, 'pending', title: estimated_by(ticket))
+      %td.real_hours= best_in_place ticket, :real_hours, type: :input, nil: 'input hours'
+      %td.user= best_in_place ticket, :user_id, type: :select, collection: User.all.map {|u| [u.id, u.full_name]} + [['', '(unassigned)']], display_with: lambda { |t| friendly_user_name(User.find(t)) }
+      %td
+        = link_to content_tag(:i, "", class: "icon-ticket restimate") + ' Re-estimate', re_estimate_ticket_path(ticket), remote: true, method: :put, class: 'btn btn-primary btn-xs re-estimate'
+        = link_to content_tag(:i, "", class: "icon-edit") + ' Edit', edit_ticket_path(ticket), class: 'btn btn-info btn-xs'

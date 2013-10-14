@@ -9,6 +9,7 @@ Zenkai::Application.routes.draw do
       get :list
       get :pending
       get :estimate_pending
+      get :current
       get :report
     end
     member do
