@@ -53,7 +53,7 @@ class User < ActiveRecord::Base
     puts user_ticket_estimates.inspect
     estimates = user_ticket_estimates.for_ticket(ticket.id).pluck :points
     if estimates.size > 0
-      ticket.points = estimation(estimates.sum / estimates.size, estimates)
+      ticket.points = estimation(estimates.sum / estimates.size, Ticket::VALID_ESTIMATES)
     else
       ticket.points = nil
     end
