@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
   def self.load_seeds
     if User.where(email: 'admin@moove-it.com').empty?
       user = User.new(email: 'admin@moove-it.com', password: 'testingzenkai', name: 'MooveIT ZENKAI Admin', approved: true)
+      user.admin = true
       user.save!
     end
 
@@ -30,7 +31,7 @@ class User < ActiveRecord::Base
     end
 
     if User.where(email: 'rodrigo.deleon@moove-it.com').empty?
-      user = User.new(email: 'rodrigo.deleon@moove-it.com', password: 'testingzenkai', name: 'Rodrigo De León', approved: true)
+      user = User.new(email: 'rodrigo.deleon@moove-it.com', password: 'testingzenkai', name: 'Rodrigo De Leon', approved: true)
       user.save!
     end
 
