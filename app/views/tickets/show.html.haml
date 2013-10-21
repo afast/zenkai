@@ -1,24 +1,28 @@
 %p#notice= notice
+%h1.title
+  Ticket 
+  =@ticket.name
+.row
+  .col-lg-12
+    %p
+      %b Project:
+      = @ticket.project.name
+    %p
+      %b Name:
+      = @ticket.name
+    %p
+      %b Estimated hours:
+      = @ticket.estimated_hours
+    %p
+      %b Real hours:
+      = @ticket.real_hours
+    %p
+      %b Points:
+      = @ticket.points
+    %p
+      %b User:
+      = @ticket.user.name if @ticket.user
 
-%p
-  %b Project:
-  = @ticket.project_id
-%p
-  %b Name:
-  = @ticket.name
-%p
-  %b Estimated hours:
-  = @ticket.estimated_hours
-%p
-  %b Real hours:
-  = @ticket.real_hours
-%p
-  %b Points:
-  = @ticket.points
-%p
-  %b User:
-  = @ticket.user_id
-
-= link_to 'Edit', edit_ticket_path(@ticket), class: 'btn'
-\|
-= link_to 'Back', tickets_path, class: 'btn'
+    = link_to 'Edit', edit_ticket_path(@ticket), class: 'btn'
+    \|
+    = link_to 'Back', tickets_path, class: 'btn'
