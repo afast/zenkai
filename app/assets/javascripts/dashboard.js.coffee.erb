@@ -29,10 +29,13 @@ $ ->
         $('.best_in_place').best_in_place()
         setTitle()
 
-  setInterval () ->
-    refreshTable $('table#pending_estimate')
-    refreshTable $('table#pending')
-    refreshTable $('table#current')
-  , 300000
+  if $('body.dashboard').size() > 0
+    setInterval () ->
+      refreshTable $('table#pending_estimate')
+      refreshTable $('table#pending')
+      refreshTable $('table#current')
+    , 300000
 
-  setTitle()
+    setTitle()
+  else
+    $('head').append($('<link rel="icon" type="image/ico" href="favicon.ico"/>'))
