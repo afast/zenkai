@@ -25,6 +25,10 @@ class Sprint < ActiveRecord::Base
       end_date = start_date + DEFAULT_DURATION
       Sprint.create!(start: start_date, end: end_date)
     end
+
+    def closed
+      where('id != ?', current!.id)
+    end
   end
 
   def date_span
@@ -32,11 +36,11 @@ class Sprint < ActiveRecord::Base
   end
 
   def total_hours(conditions = {})
-    tickets.where(conditions).complete.collect(&:real_hours).compact.inject(:+) || 0
+    completed_tickets.where(conditions).collect(&:real_hours).compact.inject(:+) || 0
   end
 
   def total_estimate(conditions = {})
-    tickets.where(conditions).complete.collect(&:points).compact.inject(:+) || 0
+    completed_tickets.where(conditions).collect(&:points).compact.inject(:+) || 0
   end
 
   def total_velocity(conditions = {})

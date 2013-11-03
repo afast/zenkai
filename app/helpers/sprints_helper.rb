@@ -1,19 +1,15 @@
 module SprintsHelper
-  def get_chart_data(sprints, project = nil)
-    if project
-      chart_data_for_project(sprints, project)
-    else
-      full_chart_data(sprints)
-    end
-  end
-
-  def get_sprint_history
+  def full_sprint_history
     {
-      velocity: Sprint.all.collect(&:total_velocity)
+      velocity: Sprint.closed.collect(&:total_velocity)
     }
   end
 
-  private
+  def sprint_history_for_project(project)
+    {
+      velocity: Sprint.closed.map { |s| s.total_velocity('tickets.project_id' => project.id) }
+    }
+  end
 
   def full_chart_data(sprints)
     tickets        = sprints.map { |s| s.completed_tickets }.flatten

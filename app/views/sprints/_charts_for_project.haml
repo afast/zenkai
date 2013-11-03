@@ -1,3 +1,4 @@
+#chart_data{ data: chart_data_for_project(sprints, project) }
 .row
   .col-lg-12
     #hours_per_project
@@ -9,4 +10,4 @@
     #velocity_per_project
 .row
   .col-lg-12
-    #velocity_history{ data: get_sprint_history }
+    #velocity_history{ data: sprint_history_for_project(project) }

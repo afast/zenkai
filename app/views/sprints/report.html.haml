@@ -40,8 +40,7 @@
             %td= "Hours: #{sprint.total_hours(@conditions)}"
             %td= "Velocity: #{'%.2f' % sprint.total_velocity(@conditions)} p/h"
             %td
-#chart_data{ data: get_chart_data(@sprints, @project) }
 - if @project
-  #{ render partial: 'charts_for_project' }
+  #{ render partial: 'charts_for_project', locals: { sprints: @sprints, project: @project } }
 - else
-  #{ render partial: 'full_charts' }
+  #{ render partial: 'full_charts', locals: { sprints: @sprints } }
