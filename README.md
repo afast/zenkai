@@ -1,6 +1,9 @@
 Zenkai
 ====
 
+[![Build Status](https://travis-ci.org/afast/zenkai.png)](https://travis-ci.org/afast/zenkai)
+
+
 Una herramienta para medir la estimación de un equipo.
 ------------------------------------------------------
 
