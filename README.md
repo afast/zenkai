@@ -2,7 +2,8 @@ Zenkai
 ====
 
 [![Build Status](https://travis-ci.org/afast/zenkai.png)](https://travis-ci.org/afast/zenkai)
-
+[![Coverage Status](https://coveralls.io/repos/afast/zenkai/badge.png)](https://coveralls.io/r/afast/zenkai)
+[![Code Climate](https://codeclimate.com/github/afast/zenkai.png)](https://codeclimate.com/github/afast/zenkai)
 
 Una herramienta para medir la estimación de un equipo.
 ------------------------------------------------------
