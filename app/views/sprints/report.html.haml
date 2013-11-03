@@ -4,7 +4,7 @@
 %h1.title Reports
 .row
   .col-lg-12
-    = form_tag report_sprints_path, method: :get, class: "form-inline" do
+    = form_tag report_sprints_path, method: :get, class: 'form-inline' do
       .row
         %h5.col-lg-1 Filter
         .col-lg-2= select_tag :sprint, options_from_collection_for_select(Sprint.all, :id, :name, params[:sprint]), prompt: '(Select Sprint)'
@@ -40,7 +40,7 @@
             %td= "Hours: #{sprint.total_hours(@conditions)}"
             %td= "Velocity: #{'%.2f' % sprint.total_velocity(@conditions)} p/h"
             %td
-#chart_data{ data: get_chart_data(@sprints) }
+#chart_data{ data: get_chart_data(@sprints, @projects) }
 .row
   .col-lg-12
     #hours_per_project
