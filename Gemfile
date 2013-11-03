@@ -40,7 +40,7 @@ end
 
 group :test do
   gem 'factory_girl_rails'
-  gem 'shoulda'
+  gem 'rspec-rails', '~> 2.0'
 end
 
 group :production do
