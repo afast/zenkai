@@ -40,25 +40,8 @@
             %td= "Hours: #{sprint.total_hours(@conditions)}"
             %td= "Velocity: #{'%.2f' % sprint.total_velocity(@conditions)} p/h"
             %td
-#chart_data{ data: get_chart_data(@sprints, @projects) }
-.row
-  .col-lg-12
-    #hours_per_project
-.row
-  .col-lg-12
-    #hour_distribution
-.row
-  .col-lg-12
-    #points_per_project
-.row
-  .col-lg-12
-    #points_distribution
-.row
-  .col-lg-12
-    #velocity_per_project
-.row
-  .col-lg-12
-    #tickets_per_project
-.row
-  .col-lg-12
-    #velocity_history{ data: get_sprint_history }
+#chart_data{ data: get_chart_data(@sprints, @project) }
+- if @project
+  #{ render partial: 'charts_for_project' }
+- else
+  #{ render partial: 'full_charts' }

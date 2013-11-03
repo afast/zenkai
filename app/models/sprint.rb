@@ -49,6 +49,10 @@ class Sprint < ActiveRecord::Base
     "#{start.strftime('%m/%d/%y')} - #{self.end.strftime('%m/%d/%y')}"
   end
 
+  def completed_tickets
+    tickets.complete
+  end
+
   private
 
   def in_progress?

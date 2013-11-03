@@ -17,8 +17,7 @@ class SprintsController < ApplicationController
     scope = Sprint.includes(:tickets)
     scope = scope.where('sprints.id' => params[:sprint]) if params[:sprint].present?
     @sprints = scope.where(@conditions)
-
-    @projects = Project.where(id: params[:project].presence).presence
+    @project = Project.find_by_id(params[:project].presence).presence
     respond_to do |format|
       format.html
       format.pdf do
