@@ -2,8 +2,8 @@
 %html
 %head
   %title Zenkai
-  = stylesheet_link_tag    "application", media: "all"
-  = javascript_include_tag "application"
+  = stylesheet_link_tag    'application', media: 'all'
+  = javascript_include_tag 'application'
   = csrf_meta_tags
   
   -# Foundation
@@ -26,10 +26,10 @@
   = stylesheet_link_tag '/js/foundation/foundation.tooltips.js'
   = stylesheet_link_tag '/js/foundation/foundation.topbar.js'
 
-  
-    <!--Google API-->
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false">
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
+  -# API de Google para fuentes
+  = javascript_include_tag src: 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false'
+  = stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Open+Sans:400,300'
+
 
 %body{ :class => params[:action] + ' ' + ( (controller_name == 'sessions' || controller_name == 'registrations' || controller_name == 'passwords')? "landing" : "logged" ) }
   - if current_user
@@ -37,16 +37,16 @@
       .top-bar
         %section.top-bar-section
           %ul.nav.navbar-nav
-            %li= link_to content_tag(:i, "", class: "icon-home")+' Home', :root
+            %li= link_to content_tag(:i, '', class: 'icon-home')+' Home', :root
             %li.divider
-            %li= link_to content_tag(:i, "", class: "icon-ticket")+' My Estimates', user_ticket_estimates_path(user_id: current_user.id)
-            %li= link_to content_tag(:i, "", class: "icon-ticket")+' All Estimates', user_ticket_estimates_path
-            %li= link_to content_tag(:i, "", class: "icon-user")+' Users', users_path
-            %li= link_to content_tag(:i, "", class: "icon-ticket")+' Tickets', tickets_path
-            %li= link_to content_tag(:i, "", class: "icon-archive")+' Projects', projects_path
-            %li= link_to content_tag(:i, "", class: "icon-file-text")+' Reports', report_sprints_path
+            %li= link_to content_tag(:i, '', class: 'icon-ticket')+' My Estimates', user_ticket_estimates_path(user_id: current_user.id)
+            %li= link_to content_tag(:i, '', class: 'icon-ticket')+' All Estimates', user_ticket_estimates_path
+            %li= link_to content_tag(:i, '', class: 'icon-user')+' Users', users_path
+            %li= link_to content_tag(:i, '', class: 'icon-ticket')+' Tickets', tickets_path
+            %li= link_to content_tag(:i, '', class: 'icon-archive')+' Projects', projects_path
+            %li= link_to content_tag(:i, '', class: 'icon-file-text')+' Reports', report_sprints_path
           %ul.nav.navbar-nav.pull-right
             %li= link_to current_user.full_name, :root
-            %li= link_to content_tag(:i, "", class: "icon-signout")+' Sign Out', destroy_session_path(current_user), method: :delete
+            %li= link_to content_tag(:i, '', class: 'icon-signout')+' Sign Out', destroy_session_path(current_user), method: :delete
   .container
     %div= yield
