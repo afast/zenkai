@@ -1,11 +1,21 @@
 .row
-  .small-12.columns
-    %h1.title Dashboard
+  .small-8.columns
+    %h1.title
+      Dashboard
+
+  .small-4.columns
+    %a{ href: '#', 'data-reveal-id' => 'modalNewTicket' }
+      .boton-verde
+        Add new ticket
+
+.px20-separator
 
 -if @pending.any?
   .row
     .small-12.columns
-      = render 'pending_estimate'
+      .full-green-upper-line
+      .panel.radius
+        = render partial: 'pending_estimate'
 
 
 .row
@@ -20,8 +30,4 @@
     .panel.radius
       = render 'current_sprint'
 
-.row
-  .small-12.columns
-    .full-yellow-upper-line
-    .panel.radius
-      = render 'small_form'
+= render partial: 'tickets/modals'

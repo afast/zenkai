@@ -2,29 +2,30 @@
 %html
 %head
   %title Zenkai
-  = stylesheet_link_tag    'application', media: 'all'
-  = javascript_include_tag 'application'
-  = csrf_meta_tags
-  
+
   -# Foundation
   = stylesheet_link_tag '/css/foundation.css', type: 'text/css'
   = javascript_include_tag '/js/vendor/custom.modernizr.js'   
-  = stylesheet_link_tag 'js/vendor/custom.modernizr.js'
-  = stylesheet_link_tag '/js/foundation/foundation.js'
-  = stylesheet_link_tag '/js/foundation/foundation.abide.js'
-  = stylesheet_link_tag '/js/foundation/foundation.clearing.js'
-  = stylesheet_link_tag '/js/foundation/foundation.cookie.js'
-  = stylesheet_link_tag '/js/foundation/foundation.dropdown.js'
-  = stylesheet_link_tag '/js/foundation/foundation.forms.js'
-  = stylesheet_link_tag '/js/foundation/foundation.interchange.js'
-  = stylesheet_link_tag '/js/foundation/foundation.joyride.js'
-  = stylesheet_link_tag '/js/foundation/foundation.magellan.js'
-  = stylesheet_link_tag '/js/foundation/foundation.orbit.js'
-  = stylesheet_link_tag '/js/foundation/foundation.placeholder.js'
-  = stylesheet_link_tag '/js/foundation/foundation.reveal.js'
-  = stylesheet_link_tag '/js/foundation/foundation.section.js'
-  = stylesheet_link_tag '/js/foundation/foundation.tooltips.js'
-  = stylesheet_link_tag '/js/foundation/foundation.topbar.js'
+  = javascript_include_tag '/js/vendor/jquery.js'
+  = javascript_include_tag '/js/foundation/foundation.js'
+  = javascript_include_tag '/js/foundation/foundation.abide.js'
+  = javascript_include_tag '/js/foundation/foundation.clearing.js'
+  = javascript_include_tag '/js/foundation/foundation.cookie.js'
+  = javascript_include_tag '/js/foundation/foundation.dropdown.js'
+  = javascript_include_tag '/js/foundation/foundation.forms.js'
+  = javascript_include_tag '/js/foundation/foundation.interchange.js'
+  = javascript_include_tag '/js/foundation/foundation.joyride.js'
+  = javascript_include_tag '/js/foundation/foundation.magellan.js'
+  = javascript_include_tag '/js/foundation/foundation.orbit.js'
+  = javascript_include_tag '/js/foundation/foundation.placeholder.js'
+  = javascript_include_tag '/js/foundation/foundation.reveal.js'
+  = javascript_include_tag '/js/foundation/foundation.section.js'
+  = javascript_include_tag '/js/foundation/foundation.tooltips.js'
+  = javascript_include_tag '/js/foundation/foundation.topbar.js'
+
+  = stylesheet_link_tag    'application', media: 'all'
+  = javascript_include_tag 'application'
+  = csrf_meta_tags
 
   -# API de Google para fuentes
   = javascript_include_tag src: 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false'
@@ -50,3 +51,6 @@
             %li= link_to content_tag(:i, '', class: 'icon-signout')+' Sign Out', destroy_session_path(current_user), method: :delete
   .container
     %div= yield
+
+  :javascript
+    $(document).foundation();

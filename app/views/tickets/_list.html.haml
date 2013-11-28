@@ -1,6 +1,8 @@
+%h3
+  Personal backlog
+
 - dashboard ||= false
 %table#pending.table.table-condensed.table-striped.table-hover{'data-path' => (dashboard ? pending_tickets_path : nil)}
-  %caption Pending Tickets
   %tr
     %th{width: '10%'} Project
     %th{width: '40%'} Name

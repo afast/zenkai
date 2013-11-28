@@ -1,4 +1,4 @@
-#error_explanation{@extend .alert;@extend .alert-danger;h1,h2,h3,h4,h5,h6{@extend p;font-size:1em;font-weight:700}ul{@extend .list-unstyled}}
+#error_explanation{@extend .alert;@extend .alert-danger;h1,h2,h3,h4,h5,h6{@extend p;font-size:1em;font-weight:700}ul{@extend .list-unstyled;}}
 
 // Colores principales
 $green: #45b39c;
@@ -22,6 +22,10 @@ html{
     body{
         background-color: transparent;
         background-image: url("/img/grain_200x200.png");
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 300;
+        text-decoration: none;
+        color: #252525;
         &.landing {
             position: relative;
             > div{
@@ -51,10 +55,22 @@ html{
     }
 }
 
+h1{
+  font-family: 'Open Sans', sans-serif;
+}
+
+h2{
+  font-family: 'Open Sans', sans-serif;
+}
+
+h3{
+  font-family: 'Open Sans', sans-serif;
+  font-size: 20px;
+}
 
 h1.title{
     @extend .container;
-    color: $red;
+    color: #2b2b2b;
     margin-top: 0;
     margin-bottom: 0;
     font-size: 1.5em;
@@ -93,5 +109,38 @@ h1.title{
 }
 
 .row{
-  max-width: 1280px
+  max-width: 1100wpx
+}
+
+.project-pending-row{
+  width: 50%;
+}
+
+.name-pending-row{
+  width: 50%;
+}
+
+.points-pending-row{
+  width: 40%;
+}
+
+.boton-verde{
+  background-color: $green;
+  font-size: 15px;
+  -webkit-border-radius: 25px 25px;   /* Safari  */
+  -moz-border-radius: 25px 25px;      /* Firefox */
+  color: #ffffff;
+  text-align: center;
+  padding: 10px 10px 10px 10px;
+}
+.boton-verde:link{
+  color: #ffffff;
+}
+.boton-verde:hover{
+  color: #ffffff;
+}
+
+.px20-separator{
+  height: 20px;
+  width: 100;
 }
