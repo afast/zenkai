@@ -1,19 +1,24 @@
-%h1.title Listing users
 .row
-  .col-lg-12
-    %table.table.table-condensed.table-striped.table-hover
-      %tr
-        %th Name
-        %th Email
-        %th
+  .small-12.columns
+    .full-blue-upper-line
+    .panel.radius
+      %h3
+        Registered users
 
-      - @users.each do |user|
-        %tr
-          %td= user.name
-          %td= user.email
-          %td
-            - if current_user.admin? || current_user == user
-              - unless current_user.approved?
-                = link_to content_tag(:i, "", class: "icon-edit") + ' Approve', approve_user_path(user), method: :post, class: 'btn btn-primary btn-xs'
-              = link_to content_tag(:i, "", class: "icon-edit") + ' Edit', edit_user_path(user), class: 'btn btn-primary btn-xs'
-              = link_to content_tag(:i, "", class: "icon-remove") + ' Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs '
+      %table{width: '100%'}
+        %thead
+          %tr
+            %th{width: '40%'} Name
+            %th{width: '40%'} Email
+            %th{width: '20%'}
+        %tbody
+          - @users.each do |user|
+            %tr
+              %td= user.name
+              %td= user.email
+              %td
+                - if current_user.admin? || current_user == user
+                  - unless current_user.approved?
+                    = link_to content_tag(:i, "", class: "icon-edit") + ' Approve', approve_user_path(user), method: :post, class: 'btn btn-primary btn-xs'
+                  = link_to content_tag(:i, "", class: "icon-edit") + ' Edit', edit_user_path(user), class: 'btn btn-primary btn-xs'
+                  = link_to content_tag(:i, "", class: "icon-remove") + ' Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs '

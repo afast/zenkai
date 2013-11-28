@@ -2,16 +2,16 @@
   Personal backlog
 
 - dashboard ||= false
-%table#pending.table.table-condensed.table-striped.table-hover{'data-path' => (dashboard ? pending_tickets_path : nil)}
+%table#pending.table.table-condensed.table-striped.table-hover{'data-path' => (dashboard ? pending_tickets_path : nil), width: '100%'}
   %tr
     %th{width: '10%'} Project
-    %th{width: '40%'} Name
+    %th{width: '50%'} Name
     - unless dashboard
       %th Sprint
     %th{width: '10%'} Points
     %th{width: '10%'} Real hours
     %th{width: '10%'} User
-    %th{width: '20%'}
+    %th{width: '10%'}
 
   - @tickets.each do |ticket|
     %tr
@@ -29,6 +29,10 @@
       %td
         - if dashboard
           = link_to content_tag(:i, "", class: "icon-ticket restimate") + ' Re-estimate', re_estimate_ticket_path(ticket), remote: true, method: :put, class: 'btn btn-primary btn-xs re-estimate'
+        %br
+        %br
         = link_to content_tag(:i, "", class: "icon-edit") + ' Edit', edit_ticket_path(ticket), class: 'btn btn-info btn-xs'
+        %br
+        %br
         - unless dashboard
           = link_to content_tag(:i, "", class: "icon-remove") + ' Destroy', ticket, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn destroy btn-danger btn-xs'

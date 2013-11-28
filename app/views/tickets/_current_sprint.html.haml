@@ -23,4 +23,6 @@
       %td.user= best_in_place ticket, :user_id, type: :select, collection: User.all.map {|u| [u.id, u.full_name]} + [['', '(unassigned)']], display_with: lambda { |t| friendly_user_name(User.find(t)) }
       %td
         = link_to content_tag(:i, "", class: "icon-ticket restimate") + ' Re-estimate', re_estimate_ticket_path(ticket), remote: true, method: :put, class: 'btn btn-primary btn-xs re-estimate'
+        %br
+        %br
         = link_to content_tag(:i, "", class: "icon-edit") + ' Edit', edit_ticket_path(ticket), class: 'btn btn-info btn-xs'

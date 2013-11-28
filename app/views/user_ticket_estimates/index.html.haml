@@ -1,17 +1,24 @@
-%h1.title Listing Estimates
-
 .row
-  .col-lg-12
-    %table.table.table-condensed.table-striped.table-hover
-      %tr
-        %th Ticket
-        %th User
-        %th Estimate
-        %th
+  .small-12.columns
+    .full-blue-upper-line
+    .panel.radius
+      %h3
+        Listing Estimates
 
-      - @user_ticket_estimates.each do |user_ticket_estimate|
-        %tr
-          %td= user_ticket_estimate.name
-          %td= user_ticket_estimate.user_full_name
-          %td.points= best_in_place user_ticket_estimate, :points, type: :input, nil: 'Pending Estimate'
-          %td= link_to 'Destroy', user_ticket_estimate, :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %table{width: '100%'}
+        %thead
+          %tr
+            %th{width: '25%'} Ticket
+            %th{width: '25%'} User
+            %th{width: '25%'} Estimate
+            %th{width: '25%'}
+
+        %tbody
+          - @user_ticket_estimates.each do |user_ticket_estimate|
+            %tr
+              %td= user_ticket_estimate.name
+              %td= user_ticket_estimate.user_full_name
+              %td.points= best_in_place user_ticket_estimate, :points, type: :input, nil: 'Pending Estimate'
+              %td= link_to 'Destroy', user_ticket_estimate, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+
