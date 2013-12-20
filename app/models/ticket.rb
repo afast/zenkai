@@ -6,8 +6,7 @@ class Ticket < ActiveRecord::Base
   has_many :user_ticket_estimates
 
   before_save :calculate_completed, if: :real_hours_changed?
-
-  scope :estimated, where(Ticket.arel_table[:points].not_eq(nil))
+scope :estimated, where(Ticket.arel_table[:points].not_eq(nil))
   scope :pending_estimate, where(points: nil)
   scope :pending, where(real_hours: nil)
   scope :done, where(Ticket.arel_table[:real_hours].not_eq(nil))
@@ -115,7 +114,28 @@ class Ticket < ActiveRecord::Base
     points / real_hours if real_hours && points && real_hours > 0
   end
 
+  def high_estimate_diff
+    points = user_ticket_estimates.collect(&:points)
+    return false unless points.size > 1
+    if points.include?(1)
+      iterate_estimates(points, [[1,3], [1,5], [1,8]])
+    elsif points.include?(8)
+      iterate_estimates(points, [[2,8], [3, 8], [5,8]])
+    elsif points.include?(2)
+      [2,5] & points == [2,5]
+    end
+  end
+
   private
+  def iterate_estimates(points, cases)
+    dangerous = false
+    cases.each do |danger|
+      dangerous ||= (points & danger == danger)
+      break if dangerous
+    end
+    return dangerous
+  end
+
   def calculate_completed
     if real_hours
       self.completed_at = DateTime.now

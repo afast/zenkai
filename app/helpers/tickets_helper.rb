@@ -1,5 +1,4 @@
 module TicketsHelper
-
   def friendly_user_name user
     if user == current_user
       'Me'
@@ -39,5 +38,13 @@ module TicketsHelper
     from = initial_from + (sprint_size*(sprint_number - 1)).weeks
     to = (initial_from + (sprint_size*sprint_number).weeks) - 1.day
     "Sprint #{from.strftime('%m/%d')} - #{to.strftime('%m/%d')}"
+  end
+
+  def ticket_class(ticket)
+    ticket.high_estimate_diff ? 'alert' : ''
+  end
+
+  def estimated_json(ticket)
+    ticket.user_ticket_estimates.map { |ute| {name: ute.user.full_name, points: ute.points} }.to_json
   end
 end

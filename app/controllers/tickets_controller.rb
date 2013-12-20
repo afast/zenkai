@@ -98,6 +98,11 @@ class TicketsController < ApplicationController
     end
   end
 
+  def estimates
+    @ticket = Ticket.find(params[:id])
+    render layout: false
+  end
+
   def estimate
     ticket = Ticket.find(params[:id])
     points = params[:ticket].presence.try(:[], :points)

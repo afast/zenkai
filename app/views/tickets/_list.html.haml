@@ -18,10 +18,10 @@
         = ticket.project_name
       %td= ticket_link_or_name(ticket)
       - if dashboard
-        %td= ticket.points || content_tag(:span, 'pending', title: estimated_by(ticket))
+        %td{class: ticket_class(ticket), data: {path: estimates_ticket_path(ticket)}}= ticket.points || content_tag(:span, 'pending', title: estimated_by(ticket))
       - else
         %td.sprint= best_in_place ticket, :sprint_id, type: :select, collection: Sprint.sorted.map { |s| [s.id, s.name]} + [['', '(unassigned)']]
-        %td.points= best_in_place ticket, :points, type: :input, nil: 'input points'
+        %td.points{class: ticket_class(ticket)}= best_in_place ticket, :points, type: :input, nil: 'input points'
       %td.real_hours= best_in_place ticket, :real_hours, type: :input, nil: 'input hours'
       %td.user= best_in_place ticket, :user_id, type: :select, collection: User.all.map {|u| [u.id, u.full_name]} + [['', '(unassigned)']], display_with: lambda { |t| friendly_user_name(User.find(t)) }
       %td

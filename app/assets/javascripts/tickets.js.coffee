@@ -3,7 +3,6 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 $ ->
-
   toggleAlert = (msg) ->
     $('.alert').remove()
     $('<div></div>', {
@@ -53,3 +52,7 @@ $ ->
     this.form.submit()
   $('input#from[type="date"]').on 'change', ->
     this.form.submit()
+  $('td.alert').click ->
+    $this = $(this)
+    $.get $this.data('path'), (data)->
+      $(data).modal()
