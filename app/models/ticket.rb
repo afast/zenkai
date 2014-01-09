@@ -6,7 +6,7 @@ class Ticket < ActiveRecord::Base
   has_many :user_ticket_estimates
 
   before_save :calculate_completed, if: :real_hours_changed?
-scope :estimated, where(Ticket.arel_table[:points].not_eq(nil))
+  scope :estimated, where(Ticket.arel_table[:points].not_eq(nil))
   scope :pending_estimate, where(points: nil)
   scope :pending, where(real_hours: nil)
   scope :done, where(Ticket.arel_table[:real_hours].not_eq(nil))

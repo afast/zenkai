@@ -23,7 +23,9 @@ class Sprint < ActiveRecord::Base
     def create_from_previous(previous)
       start_date = previous ? previous.end.tomorrow : Date.today
       end_date = start_date + DEFAULT_DURATION
-      Sprint.create!(start: start_date, end: end_date)
+      sprint = Sprint.create!(start: start_date, end: end_date)
+      previous.tickets.pending.update_all(sprint: sprint) if previous
+      sprint
     end
 
     def closed
