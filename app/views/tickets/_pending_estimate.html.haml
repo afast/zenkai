@@ -1,14 +1,22 @@
-%table#pending_estimate.table.table-condensed.table-striped.table-hover{'data-path' => estimate_pending_tickets_path}
-  %caption Pending Estimates
-  %tr
-    %th Project
-    %th Name
-    %th Points
+%h3
+  Pending estimate
 
-  - @pending.each do |ticket|
+%table#pending_estimate.table.table-condensed.table-striped.table-hover{'data-path' => estimate_pending_tickets_path, width: '100%' }
+  %thead
     %tr
-      %td
-        %i.icon-circle{style: "color: #{ticket.project.color}"}
-        = ticket.project_name
-      %td= ticket_link_or_name(ticket)
-      %td.points= best_in_place ticket, :points, type: :input, nil: 'Not Estimated', path: estimate_ticket_path(ticket)
+      %th.project-pending-row
+        Project
+      %th.name-pending-row
+        Name
+      %th.points-pending-row
+        Points
+  %tbody
+    - @pending.each do |ticket|
+      %tr
+        %td.project-pending-row
+          %i.icon-circle{style: "color: #{ticket.project.color}"}
+          = ticket.project_name
+        %td.name-pending-row
+          = ticket_link_or_name(ticket)
+        %td.points-pending-row
+          = best_in_place ticket, :points, { type: :input, nil => 'Not Estimated', path: estimate_ticket_path(ticket) }

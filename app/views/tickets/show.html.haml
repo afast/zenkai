@@ -24,5 +24,6 @@
       = @ticket.user.name if @ticket.user
 
     = link_to 'Edit', edit_ticket_path(@ticket), class: 'btn'
-    \|
+    %br
+    %br
     = link_to 'Back', tickets_path, class: 'btn'

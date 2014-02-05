@@ -1,9 +1,33 @@
-%h1.title Dashboard
+.row
+  .small-8.columns
+    %h1.title
+      Dashboard
+
+  .small-4.columns
+    %a{ href: '#', 'data-reveal-id' => 'modalNewTicket' }
+      .boton-verde
+        Add new ticket
+
+.px20-separator
+
 -if @pending.any?
   .row
-    .col-lg-12.scrollable= render 'pending_estimate'
+    .small-12.columns
+      .full-green-upper-line
+      .panel.radius
+        = render partial: 'pending_estimate'
+
+
 .row
-  .col-lg-10= render 'list', dashboard: true
-  .col-lg-2= render 'small_form'
+  .small-12.columns
+    .full-red-upper-line
+    .panel.radius
+      = render 'list', dashboard: true
+
 .row
-  .col-lg-12= render 'current_sprint'
+  .small-12.columns
+    .full-blue-upper-line
+    .panel.radius
+      = render 'current_sprint'
+
+= render partial: 'tickets/modals'
