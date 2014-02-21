@@ -1,0 +1,28 @@
+%h1.title CR & E
+.row
+  .col-lg-12
+    = form_tag sprint_users_path, class: "form-inline", method: :get do
+      .row
+        %h5.col-lg-1 Filters:
+        .col-lg-3= select_tag :sprint, options_from_collection_for_select(Sprint.sorted, :id, :name, @sprint)
+        .col-lg-2= select_tag :user, options_from_collection_for_select(User.all, :id, :name, params[:user]), prompt: '(Filter User)'
+.row
+  .col-lg-12
+    %table.table.table-condensed.table-striped.table-hover
+      %caption CR & E
+      %tr
+        %th User
+        %th Sprint
+        %th Code Review
+        %th Estimate
+        %th
+
+      - @sprint_users.each do |su|
+        %tr
+          %td= su.user_name
+          %td.sprint= su.sprint_name
+          %td= su.code_review
+          %td= su.estimation
+          %td
+            - if current_user.admin? || su.user == current_user
+              = link_to content_tag(:i, "", class: "icon-remove") + ' Destroy', su, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn destroy btn-danger btn-xs'

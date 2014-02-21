@@ -19,19 +19,21 @@
         %th Name
         %th Velocity
         %th User
+        %th
 
       - @sprints.each_with_index do |sprint, index|
         %tr.info
-          %td{colspan: 4}= sprint_info params[:from], params[:sprint_size], index + 1
+          %td{colspan: 5}= sprint_info params[:from], params[:sprint_size], index + 1
         - sprint.tickets.where(@conditions).complete.each do |ticket|
           %tr
             %td{style: "color: #{ticket.project_color}"}= ticket.project_name
             %td= ticket_link_or_name(ticket)
             %td= '%.2f' % ticket.velocity
             %td= friendly_user_name ticket.user
+            %td
         - if sprint.tickets.empty?
           %tr.error
-            %td{colspan: 4}
+            %td{colspan: 5}
               = 'No tickets for this sprint!'
         - else
           %tr.success
@@ -39,7 +41,7 @@
             %td= "Points: #{sprint.total_estimate(@conditions)}"
             %td= "Hours: #{sprint.total_hours(@conditions)}"
             %td= "Velocity: #{'%.2f' % sprint.total_velocity(@conditions)} p/h"
-            %td
+            %td= "CR: #{sprint.code_review_time} | E: #{sprint.estimate_time}"
 - if @project
   #{ render partial: 'charts_for_project', locals: { sprints: @sprints, project: @project } }
 - else

@@ -18,9 +18,9 @@ module SprintsHelper
     total_tickets  = tickets.size
     projects       = tickets.map { |t| t.project }.uniq
     {
-        hours_per_project: projects.map { |p| [sprints.map { |s| s.total_hours('tickets.project_id' => p.id) }.compact.inject(:+)] },
-        projects: projects.map { |p| { label: p.name } }.to_json,
-        hour_distribution: [projects.map { |p| [p.name, (sprints.map { |s| s.total_hours('tickets.project_id' => p.id) }.compact.inject(:+) / total) * 100]}],
+        hours_per_project: projects.map { |p| [sprints.map { |s| s.total_hours('tickets.project_id' => p.id) }.compact.inject(:+)] } + [[code_review_time(sprints)], [estimate_time(sprints)]],
+        projects: (projects.map { |p| { label: p.name } } + [{label: 'Code Review'}, {label: 'Estimating'}]).to_json,
+        hour_distribution: [projects.map { |p| [p.name, (sprints.map { |s| s.total_hours('tickets.project_id' => p.id) }.compact.inject(:+) / total) * 100]} + [["Code Review", code_review_time(sprints)], ["Estimating", estimate_time(sprints)]]],
         points_per_project: projects.map { |p| [sprints.map { |s| s.total_estimate('tickets.project_id' => p.id)}.compact.inject(:+)] },
         points_distribution: [projects.map { |p| [p.name, (sprints.map { |s| s.total_estimate('tickets.project_id' => p.id) }.compact.inject(:+) / total_estimate.to_f) * 100]}],
         velocity_per_project: projects.map { |p| sprints.map { |s| s.total_velocity('tickets.project_id' => p.id) } },
@@ -35,5 +35,13 @@ module SprintsHelper
         points_per_project: [[sprints.map { |s| s.total_estimate('tickets.project_id' => project.id)}.compact.inject(:+)]],
         velocity_per_project: [sprints.map { |s| s.total_velocity('tickets.project_id' => project.id) }],
     }
+  end
+
+  def code_review_time(sprints)
+    @code_review_time ||= SprintUser.where(sprint_id: sprints).sum(:code_review)
+  end
+
+  def estimate_time(sprints)
+    @estimate_time ||= SprintUser.where(sprint_id: sprints).sum(:estimation)
   end
 end

@@ -14,7 +14,7 @@ class SprintsController < ApplicationController
     @conditions = {}
     @conditions['tickets.project_id'] = params[:project] if params[:project].present?
     @conditions['tickets.user_id'] = params[:user] if params[:user].present?
-    scope = Sprint.includes(:tickets)
+    scope = Sprint.includes(:tickets, :sprint_users)
     scope = scope.where('sprints.id' => params[:sprint]) if params[:sprint].present?
     @sprints = scope.where(@conditions)
     @project = Project.find_by_id(params[:project].presence).presence

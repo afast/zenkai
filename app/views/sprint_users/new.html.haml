@@ -1,0 +1,13 @@
+.modal.fade{tabindex: -1, role: 'dialog', aria: { hidden: true }}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{type: "button", data: {dismiss: "modal"}, aria: {hidden: true}}
+          &times;
+        %h4.modal-title
+          Register Estimation and Code Review time
+      .modal-body
+        = render 'form'
+      .modal-footer
+        %button.btn.btn-default{type: "button", data: {dismiss: "modal"}}
+          Close

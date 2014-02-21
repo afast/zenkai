@@ -30,4 +30,5 @@ Zenkai::Application.routes.draw do
       get :report
     end
   end
+  resources :sprint_users, only: [:new, :create, :index, :destroy]
 end
