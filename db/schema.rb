@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140109013723) do
+ActiveRecord::Schema.define(:version => 20140221023019) do
 
   create_table "projects", :force => true do |t|
     t.string   "name"
@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(:version => 20140109013723) do
 
   create_table "sprints", :force => true do |t|
     t.date     "start"
-    t.date     "end"
+    t.date     "sprint_end"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

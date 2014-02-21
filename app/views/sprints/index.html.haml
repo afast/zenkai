@@ -11,7 +11,7 @@
   - @sprints.each do |sprint|
     %tr
       %td= sprint.start
-      %td= sprint.end
+      %td= sprint.sprint_end
       %td= link_to 'Show', sprint
       %td= link_to 'Edit', edit_sprint_path(sprint)
       %td= link_to 'Destroy', sprint, :method => :delete, :data => { :confirm => 'Are you sure?' }

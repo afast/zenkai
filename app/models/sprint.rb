@@ -5,8 +5,8 @@ class Sprint < ActiveRecord::Base
   has_many :sprint_users
 
   scope :sorted, order('start DESC')
-  validates_presence_of :start, :end
-  attr_accessible :end, :start
+  validates_presence_of :start, :sprint_end
+  attr_accessible :sprint_end, :start
 
   class << self
     # Returns the current sprint if it's still in progress.
@@ -18,13 +18,13 @@ class Sprint < ActiveRecord::Base
     end
 
     def last_one
-      Sprint.order('end DESC').first
+      Sprint.order('sprint_end DESC').first
     end
 
     def create_from_previous(previous)
-      start_date = previous ? previous.end.tomorrow : Date.today
+      start_date = previous ? previous.sprint_end.tomorrow : Date.today
       end_date = start_date + DEFAULT_DURATION
-      sprint = Sprint.create!(start: start_date, end: end_date)
+      sprint = Sprint.create!(start: start_date, sprint_end: end_date)
       if previous
         logger.info "Moving #{previous.tickets.pending.count} peding tickets (out of #{previous.tickets.count}) to new sprint"
         previous.tickets.pending.update_all(sprint_id: sprint.id)
@@ -38,7 +38,7 @@ class Sprint < ActiveRecord::Base
   end
 
   def date_span
-    "#{start.to_date} - #{self.end.to_date}"
+    "#{start.to_date} - #{self.sprint_end.to_date}"
   end
 
   def total_hours(conditions = {})
@@ -56,7 +56,7 @@ class Sprint < ActiveRecord::Base
   end
 
   def name
-    "#{start.strftime('%m/%d/%y')} - #{self.end.strftime('%m/%d/%y')}"
+    "#{start.strftime('%m/%d/%y')} - #{self.sprint_end.strftime('%m/%d/%y')}"
   end
 
   def completed_tickets
@@ -74,6 +74,6 @@ class Sprint < ActiveRecord::Base
   private
 
   def in_progress?
-    Date.today.between?(self.start, self.end)
+    Date.today.between?(self.start, self.sprint_end)
   end
 end
