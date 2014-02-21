@@ -39,3 +39,11 @@ $ ->
     setTitle()
   else
     $('head').append($('<link rel="icon" type="image/ico" href="favicon.ico"/>'))
+
+  $(document).on 'keypress', (event) ->
+    $('.modal').modal('hide').remove()
+    if event.keyCode == 104
+      $.get "/sprint_users/new", (data)->
+        modal = $(data).modal()
+        $(modal).on 'ajax:success', ()->
+          $(modal).modal('hide')

@@ -2,6 +2,7 @@ class Sprint < ActiveRecord::Base
   DEFAULT_DURATION = 2.weeks - 1.day
 
   has_many :tickets
+  has_many :sprint_users
 
   scope :sorted, order('start DESC')
   validates_presence_of :start, :end
@@ -57,6 +58,14 @@ class Sprint < ActiveRecord::Base
 
   def completed_tickets
     tickets.complete
+  end
+
+  def code_review_time
+    sprint_users.sum :code_review
+  end
+
+  def estimate_time
+    sprint_users.sum :estimation
   end
 
   private

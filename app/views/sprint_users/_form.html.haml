@@ -1,0 +1,20 @@
+= form_for @sprint_user, html: { class: "form-horizontal" }, remote: request.xhr? do |f|
+  - if @sprint_user.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@sprint_user.errors.count, "error")} prohibited this sprint_user from being saved:"
+      %ul
+        - @sprint_user.errors.full_messages.each do |msg|
+          %li= msg
+
+  .form-group
+    = f.label :sprint_id, class: "col-lg-2 control-label"
+    .col-lg-8= f.select :sprint_id, options_from_collection_for_select(Sprint.sorted, :id, :date_span, Sprint.current!.id)
+  .form-group
+    = f.label :estimation, class: "col-lg-2 control-label"
+    .col-lg-8= f.number_field :estimation, class: "form-control"
+  .form-group
+    = f.label :code_review, class: "col-lg-2 control-label"
+    .col-lg-8= f.number_field :code_review, class: "form-control"
+  = f.hidden_field :user_id
+  .col-lg-offset-2
+    = f.submit 'Save', class: 'btn btn-success'

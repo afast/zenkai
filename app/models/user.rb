@@ -47,7 +47,7 @@ class User < ActiveRecord::Base
   end
 
   def full_name
-    name || email
+    name || email.gsub(/@.+/, '')
   end
 
   def estimation(value, array)

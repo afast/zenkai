@@ -13,7 +13,7 @@
           %td= user.email
           %td
             - if current_user.admin? || current_user == user
-              - unless current_user.approved?
+              - unless user.approved?
                 = link_to content_tag(:i, "", class: "icon-edit") + ' Approve', approve_user_path(user), method: :post, class: 'btn btn-primary btn-xs'
               = link_to content_tag(:i, "", class: "icon-edit") + ' Edit', edit_user_path(user), class: 'btn btn-primary btn-xs'
               = link_to content_tag(:i, "", class: "icon-remove") + ' Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs '
