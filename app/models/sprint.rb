@@ -18,14 +18,17 @@ class Sprint < ActiveRecord::Base
     end
 
     def last_one
-      Sprint.find_by_end(maximum('end'))
+      Sprint.order('end DESC').first
     end
 
     def create_from_previous(previous)
       start_date = previous ? previous.end.tomorrow : Date.today
       end_date = start_date + DEFAULT_DURATION
       sprint = Sprint.create!(start: start_date, end: end_date)
-      previous.tickets.pending.update_all(sprint: sprint) if previous
+      if previous
+        logger.info "Moving #{previous.tickets.pending.count} peding tickets (out of #{previous.tickets.count}) to new sprint"
+        previous.tickets.pending.update_all(sprint_id: sprint.id)
+      end
       sprint
     end
 
