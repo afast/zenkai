@@ -7,6 +7,10 @@
   %b End:
   = @sprint.sprint_end
 
+%p
+  %b Target Points:
+  = @sprint.target_points
+
 = link_to 'Edit', edit_sprint_path(@sprint)
 \|
 = link_to 'Back', sprints_path

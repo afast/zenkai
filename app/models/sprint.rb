@@ -6,7 +6,7 @@ class Sprint < ActiveRecord::Base
 
   scope :sorted, order('start DESC')
   validates_presence_of :start, :sprint_end
-  attr_accessible :sprint_end, :start
+  attr_accessible :sprint_end, :start, :target_points
 
   class << self
     # Returns the current sprint if it's still in progress.
@@ -69,6 +69,14 @@ class Sprint < ActiveRecord::Base
 
   def estimate_time
     sprint_users.sum :estimation
+  end
+
+  def completed_points
+    completed_tickets.sum(:points)
+  end
+
+  def completed_avg
+    ((completed_points.to_f / target_points.to_f) * 100).round
   end
 
   private

@@ -1,4 +1,11 @@
+-if target_points = Sprint.current!.target_points
+  .row.jumbotron#progress-bar
+    %h3.title= "Points for this Sprint! #{target_points}"
+    .progress
+      .progress-bar{ class: class_for_progress_bar(avg = Sprint.current!.completed_avg), 'role' => 'progressbar', 'aria-valuemin' => '0', 'aria-valuemax' => '100', 'style' => "width: #{avg}%" }
+
 %h1.title Dashboard
+
 -if @pending.any?
   .row
     .col-lg-12.scrollable= render 'pending_estimate'
