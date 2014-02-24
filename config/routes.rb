@@ -3,6 +3,7 @@ Zenkai::Application.routes.draw do
 
   devise_for :users
   get 'api/pending_estimates', to: 'Api#pending_estimates'
+  post 'api/tickets/create', to: 'Api#create_ticket'
   resources :tickets do
     collection do
       get :dashboard
