@@ -12,6 +12,13 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require bootstrap.min
+//= require foundation.js
+//= require foundation.reveal
+//= require foundation.topbar
+//= require foundation.abide
 //= require best_in_place
 //= require_tree .
+
+$(document).ready(function() {
+  $(document).foundation();
+})
