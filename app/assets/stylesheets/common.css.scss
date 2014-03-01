@@ -62,3 +62,20 @@ body{
     width: 20%;
   }
 }
+
+#project-table {
+  width: 100%;
+  text-align: left;
+  .name-row {
+    width: 30%;
+  }
+  .abreviation-row {
+    width: 20%;
+  }
+  .url-row {
+    width: 40%;
+  }
+  .control-row {
+    width: 10%;
+  }
+}

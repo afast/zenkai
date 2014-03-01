@@ -1,14 +1,16 @@
-%p#notice= notice
-
-%h1.title Projects
 .row
-  .col-lg-12
-    %table.table.table-condensed.table-striped.table-hover
+  .small-12.columns
+    .main-page-title
+      = '#Projects'
+    %table#project-table
       %tr
-        %th Name
-        %th Abbreviation
-        %th External Url
-        %th
+        %th.name-row
+          Name
+        %th.abreviation-row
+          Abbreviation
+        %th.url-row
+          External Url
+        %th.control-row
 
       - @projects.each do |project|
         %tr
