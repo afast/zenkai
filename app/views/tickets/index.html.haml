@@ -1,13 +1,25 @@
-%h1.title Tickets
 .row
-  .col-lg-12
-    = form_tag tickets_path, class: "form-inline", method: :get do
-      .row
-        %h5.col-lg-1 Filters:
-        .col-lg-3= select_tag :sprint, options_from_collection_for_select(Sprint.sorted, :id, :name, @sprint)
-        .col-lg-2= select_tag :project, options_from_collection_for_select(Project.all, :id, :name, params[:project]), prompt: '(Filter Project)'
-        .col-lg-2= select_tag :user, options_from_collection_for_select(User.all, :id, :name, params[:user]), prompt: '(Filter User)'
-        .col-lg-2= text_field_tag :description, params[:description], placeholder: 'Description', class: "form-control"
-        .col-lg-2.pull-right= link_to content_tag(:i, "", class: "icon-ticket") + ' New Ticket', new_ticket_path, class: 'btn btn-primary btn-small'
+  .small-12.columns
+    .main-page-title
+      = '#Tickets'
+
+
 .row
-  .col-lg-12= render 'list'
+  .small-12.columns
+    .panel.radius
+      .table-name.red-border
+        = '#Filter'
+      %hr
+      %br
+      = form_tag tickets_path, class: "form-inline", method: :get do
+        .row
+          .small-3.columns= select_tag :sprint, options_from_collection_for_select(Sprint.sorted, :id, :name, @sprint)
+          .small-2.columns= select_tag :project, options_from_collection_for_select(Project.all, :id, :name, params[:project]), prompt: '(Filter Project)'
+          .small-2.columns= select_tag :user, options_from_collection_for_select(User.all, :id, :name, params[:user]), prompt: '(Filter User)'
+          .small-3.columns= text_field_tag :description, params[:description], placeholder: 'Description', class: "form-control"
+          .small-2.columns= link_to content_tag(:i, "", class: "icon-ticket") + ' New Ticket', new_ticket_path, class: 'button-filter button'
+      %hr
+.row
+  .large-12.columns
+    .light.panel.radius
+      = render 'list'
