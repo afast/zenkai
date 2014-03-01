@@ -1,20 +1,26 @@
 .row
   .small-12.columns
     .main-page-title
-      = '#ListingEstimates'
-    %table#my-estimates
-      %tr
-        %th.ticket-row
-          Ticket
-        %th.user-row
-          User
-        %th.estimation-row
-          Estimate
-        %th.control-row
 
-      - @user_ticket_estimates.each do |user_ticket_estimate|
+    .light.panel.radius
+      .table-name.green-border
+        = '#ListingEstimates'
+
+      %br
+      %br
+      %table#my-estimates
         %tr
-          %td= user_ticket_estimate.name
-          %td= user_ticket_estimate.user_full_name
-          %td.points= best_in_place user_ticket_estimate, :points, type: :input, nil: 'Pending Estimate'
-          %td= link_to 'Destroy', user_ticket_estimate, :method => :delete, :data => { :confirm => 'Are you sure?' }
+          %th.ticket-row
+            Ticket
+          %th.user-row
+            User
+          %th.estimation-row
+            Estimate
+          %th.control-row
+
+        - @user_ticket_estimates.each do |user_ticket_estimate|
+          %tr
+            %td= user_ticket_estimate.name
+            %td= user_ticket_estimate.user_full_name
+            %td.points= best_in_place user_ticket_estimate, :points, type: :input, nil: 'Pending Estimate'
+            %td= link_to 'Destroy', user_ticket_estimate, :method => :delete, :data => { :confirm => 'Are you sure?' }

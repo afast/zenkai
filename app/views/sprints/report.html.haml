@@ -8,50 +8,70 @@
 
 .row
   .small-12.columns
-    = form_tag report_sprints_path, method: :get, class: 'form-inline' do
-      .row
-        .small-2.columns
-          %h5 Filter
-        .small-2.columns= select_tag :sprint, options_from_collection_for_select(Sprint.all, :id, :name, params[:sprint]), prompt: '(Select Sprint)'
-        .small-3.columns= select_tag :project, options_from_collection_for_select(Project.all, :id, :name, params[:project]), prompt: '(Filter Project)'
-        .small-3.columns= select_tag :user, options_from_collection_for_select(User.all, :id, :name, params[:user]), prompt: '(Filter User)'
-        .small-2.columns= link_to 'PDF', params.merge(format: 'pdf'), class: 'button-submit-pdf button'
+    .panel.radius
+      .table-name.red-border
+        = '#Filter'
+      %hr
+      %br
+      = form_tag report_sprints_path, method: :get, class: 'form-inline' do
+        .row
+          .small-2.columns
+            %h5 Filter
+          .small-2.columns= select_tag :sprint, options_from_collection_for_select(Sprint.all, :id, :name, params[:sprint]), prompt: '(Select Sprint)'
+          .small-3.columns= select_tag :project, options_from_collection_for_select(Project.all, :id, :name, params[:project]), prompt: '(Filter Project)'
+          .small-3.columns= select_tag :user, options_from_collection_for_select(User.all, :id, :name, params[:user]), prompt: '(Filter User)'
+          .small-2.columns= link_to 'PDF', params.merge(format: 'pdf'), class: 'button-submit-pdf button'
+      %hr
 .row
   .small-12.columns
-    %table#sprints-table
-      %tr
-        %th.project-row
-          Project
-        %th.name-row
-          Name
-        %th.velocity-row
-          Velocity
-        %th.user-row
-          User
-        %th.control-row
+    .light.panel.radius
+      .table-name.green-border
+        = '#Summary'
+      %hr
+      %br
+      %table#sprints-table
+        %tr
+          %th.project-row
+            Project
+          %th.name-row
+            Name
+          %th.velocity-row
+            Velocity
+          %th.user-row
+            User
+          %th.control-row
 
-      - @sprints.each_with_index do |sprint, index|
-        %tr.info
-          %td{colspan: 5}= sprint_info params[:from], params[:sprint_size], index + 1
-        - sprint.tickets.where(@conditions).complete.each do |ticket|
-          %tr
-            %td{style: "color: #{ticket.project_color}"}= ticket.project_name
-            %td= ticket_link_or_name(ticket)
-            %td= '%.2f' % ticket.velocity
-            %td= friendly_user_name ticket.user
-            %td
-        - if sprint.tickets.empty?
-          %tr.error
-            %td{colspan: 5}
-              = 'No tickets for this sprint!'
-        - else
-          %tr.success
-            %td= 'Summary'
-            %td= "Points: #{sprint.total_estimate(@conditions)}"
-            %td= "Hours: #{sprint.total_hours(@conditions)}"
-            %td= "Velocity: #{'%.2f' % sprint.total_velocity(@conditions)} p/h"
-            %td= "CR: #{sprint.code_review_time} | E: #{sprint.estimate_time}"
-- if @project
-  #{ render partial: 'charts_for_project', locals: { sprints: @sprints, project: @project } }
-- else
-  #{ render partial: 'full_charts', locals: { sprints: @sprints } }
+        - @sprints.each_with_index do |sprint, index|
+          %tr.info
+            %td{colspan: 5}= sprint_info params[:from], params[:sprint_size], index + 1
+          - sprint.tickets.where(@conditions).complete.each do |ticket|
+            %tr
+              %td{style: "color: #{ticket.project_color}"}= ticket.project_name
+              %td= ticket_link_or_name(ticket)
+              %td= '%.2f' % ticket.velocity
+              %td= friendly_user_name ticket.user
+              %td
+          - if sprint.tickets.empty?
+            %tr.error
+              %td{colspan: 5}
+                = 'No tickets for this sprint!'
+          - else
+            %tr.success
+              %td= 'Summary'
+              %td= "Points: #{sprint.total_estimate(@conditions)}"
+              %td= "Hours: #{sprint.total_hours(@conditions)}"
+              %td= "Velocity: #{'%.2f' % sprint.total_velocity(@conditions)} p/h"
+              %td= "CR: #{sprint.code_review_time} | E: #{sprint.estimate_time}"
+      %hr
+
+.row
+  .small-12.columns
+    .light.panel.radius
+      .table-name.green-border
+        = '#Charts'
+      %br
+      %hr
+      - if @project
+        #{ render partial: 'charts_for_project', locals: { sprints: @sprints, project: @project } }
+      - else
+        #{ render partial: 'full_charts', locals: { sprints: @sprints } }

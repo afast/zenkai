@@ -1,28 +1,34 @@
 .row
   .small-12.columns
     .main-page-title
-      = '#Projects'
-    %table#project-table
-      %tr
-        %th.name-row
-          Name
-        %th.abreviation-row
-          Abbreviation
-        %th.url-row
-          External Url
-        %th.control-row
 
-      - @projects.each do |project|
+    .light.panel.radius
+      .table-name.green-border
+        = '#Projects'
+
+      %br
+      %br
+      %table#project-table
         %tr
-          %td
-            %i.icon-circle{style: "color: #{project.color}"}
-            = project.name
-          %td= project.abbreviation
-          %td= project_url_link(project)
-          %td
-            = link_to 'Edit', edit_project_path(project), class: 'btn btn-primary btn-xs'
-            = link_to content_tag(:i, "", class: "icon-remove") + ' Destroy', project, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs'
+          %th.name-row
+            Name
+          %th.abreviation-row
+            Abbreviation
+          %th.url-row
+            External Url
+          %th.control-row
 
-    %hr
+        - @projects.each do |project|
+          %tr
+            %td
+              %i.icon-circle{style: "color: #{project.color}"}
+              = project.name
+            %td= project.abbreviation
+            %td= project_url_link(project)
+            %td
+              = link_to 'Edit', edit_project_path(project), class: 'btn btn-primary btn-xs'
+              = link_to content_tag(:i, "", class: "icon-remove") + ' Destroy', project, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs'
 
-    = link_to content_tag(:i, "", class: "icon-archive")+' New Project', new_project_path, class: 'btn btn-primary btn-lg'
+      %hr
+
+      = link_to content_tag(:i, "", class: "icon-archive")+' New Project', new_project_path, class: 'btn btn-primary btn-lg'
