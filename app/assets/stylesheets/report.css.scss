@@ -5,3 +5,33 @@
 .extra_padding {
   padding: 40px 0;
 }
+
+.button-submit-pdf {
+  background-color: #45b39c;
+  padding: 9px;
+  width: 100%;
+}
+
+.button-submit-pdf:hover {
+  background-color: #45b39c;
+}
+
+#sprints-table {
+  width: 100%;
+  text-align: left;
+  .project-row {
+    width: 20%;
+  }
+  .name-row {
+    width: 20%;
+  }
+  .velocity-row {
+    width: 20%;
+  }
+  .user-row {
+    width: 20%;
+  }
+  .control-row {
+    width: 20%;
+  }
+}

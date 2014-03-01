@@ -1,16 +1,16 @@
 .big-separator
 
 .row
-  .small-7.columns
+  .large-7.columns
     .light.panel.radius
       Avances..
-  .small-5.columns
+  .large-5.columns
     .panel.radius
       = render 'small_form'
 
 
 .row
-  .small-12.columns
+  .large-12.columns
     .panel.radius
       - if @pending.any?
         = render partial: 'pending_estimate'
@@ -20,11 +20,11 @@
           Nice! You don't have any ticket to estimate.
 
 .row
-  .small-12.columns
+  .large-12.columns
     .light.panel.radius
       = render 'list', dashboard: true
 
 .row
-  .small-12.columns
+  .large-12.columns
     .light.panel.radius
       = render 'current_sprint'

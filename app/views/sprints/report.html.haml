@@ -1,25 +1,34 @@
 = javascript_include_tag 'report'
 = stylesheet_link_tag 'report'
 
-%h1.title Reports
 .row
-  .col-lg-12
+  .small-12.columns
+    .main-page-title
+      = '#Reports'
+
+.row
+  .small-12.columns
     = form_tag report_sprints_path, method: :get, class: 'form-inline' do
       .row
-        %h5.col-lg-1 Filter
-        .col-lg-2= select_tag :sprint, options_from_collection_for_select(Sprint.all, :id, :name, params[:sprint]), prompt: '(Select Sprint)'
-        .col-lg-3= select_tag :project, options_from_collection_for_select(Project.all, :id, :name, params[:project]), prompt: '(Filter Project)'
-        .col-lg-3= select_tag :user, options_from_collection_for_select(User.all, :id, :name, params[:user]), prompt: '(Filter User)'
-        .col-lg-2= link_to 'PDF', params.merge(format: 'pdf'), class: 'btn btn-primary'
+        .small-2.columns
+          %h5 Filter
+        .small-2.columns= select_tag :sprint, options_from_collection_for_select(Sprint.all, :id, :name, params[:sprint]), prompt: '(Select Sprint)'
+        .small-3.columns= select_tag :project, options_from_collection_for_select(Project.all, :id, :name, params[:project]), prompt: '(Filter Project)'
+        .small-3.columns= select_tag :user, options_from_collection_for_select(User.all, :id, :name, params[:user]), prompt: '(Filter User)'
+        .small-2.columns= link_to 'PDF', params.merge(format: 'pdf'), class: 'button-submit-pdf button'
 .row
-  .col-lg-12
-    %table.table.table-condensed.table-striped.table-hover
+  .small-12.columns
+    %table#sprints-table
       %tr
-        %th Project
-        %th Name
-        %th Velocity
-        %th User
-        %th
+        %th.project-row
+          Project
+        %th.name-row
+          Name
+        %th.velocity-row
+          Velocity
+        %th.user-row
+          User
+        %th.control-row
 
       - @sprints.each_with_index do |sprint, index|
         %tr.info
