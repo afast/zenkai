@@ -1,3 +1,9 @@
+.table-name.green-border
+  = '#AddNewTicket'
+
+%br
+%br
+
 = form_for @ticket, remote: true, html: { 'data-type' => 'json' } do |f|
   - if @ticket.errors.any?
     #error_explanation
@@ -6,13 +12,12 @@
         - @ticket.errors.full_messages.each do |msg|
           %li= msg
 
-  .form-group
-    = f.text_field :name, class: 'form-control', placeholder: 'Ticket'
-  .form-group
-    = f.select :project_id, options_from_collection_for_select(@projects, :id, :abbreviation), { class: 'form-control' }
-  .form-group
-    = f.select :user_id, options_from_collection_for_select(User.all, :id, :name, @ticket.user_id), include_blank: 'Unassigned'
-  .form-group
-    = f.hidden_field :sprint_id, value: @ticket.sprint.try(:id)
-  .actions
-    = f.submit 'Save', class: 'btn btn-success'
+  = f.text_field :name, class: 'form-control', placeholder: 'Ticket ID'
+  = f.select :project_id, options_from_collection_for_select(@projects, :id, :abbreviation)
+  %br
+  %br
+  = f.select :user_id, options_from_collection_for_select(User.all, :id, :name, @ticket.user_id), include_blank: 'Unassigned'
+  %br
+  %br
+  = f.hidden_field :sprint_id, value: @ticket.sprint.try(:id)
+  = f.submit 'Save', class: 'button-submit button'

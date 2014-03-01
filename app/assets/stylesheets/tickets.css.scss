@@ -15,3 +15,101 @@ div#fast_entry {
   width: 104px;
   background-color: #f2f2f2;
 }
+
+.no-tickets {
+  font-size: 30px;
+  color: #808080;
+  text-align: center;
+}
+
+.table-name {
+  font-size: 20px;
+  width: 200px;
+  height: 35px;
+  background-color: #ebebeb;
+  color: #8c8c8c;
+  margin-left: -20px;
+  padding-top: 6px;
+  padding-left: 8px;
+}
+
+.red-border{
+  order-left-width: 2px;
+  border-left-color: #bd3e25;
+  border-left-style: solid;
+}
+
+.green-border{
+  order-left-width: 2px;
+  border-left-color: #45b39c;
+  border-left-style: solid;
+}
+
+#pending_estimate {
+  width: 100%;
+  text-align: left;
+  .project-row {
+    width: 20%;
+  }
+  .name-row {
+    width: 20%;
+  }
+  .points-row {
+    width: 80%;
+  }
+}
+
+#current {
+  width: 100%;
+  text-align: left;
+  .project-row {
+    width: 20%;
+  }
+  .name-row {
+    width: 20%;
+  }
+  .points-row {
+    width: 10%;
+  }
+  .hours-row {
+    width: 10%;
+  }
+  .user-row {
+    width: 20%;
+  }
+  .control-row {
+    width: 20%;
+  }
+}
+
+#pending {
+  width: 100%;
+  text-align: left;
+  .project-row {
+    width: 20%;
+  }
+  .name-row {
+    width: 20%;
+  }
+  .points-row {
+    width: 10%;
+  }
+  .hours-row {
+    width: 10%;
+  }
+  .user-row {
+    width: 20%;
+  }
+  .control-row {
+    width: 20%;
+  }
+}
+
+.button-submit {
+  background-color: #45b39c;
+  border-radius: 10px;
+}
+
+.button-submit:hover {
+  background-color: #45b39c;
+}

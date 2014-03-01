@@ -1,12 +1,22 @@
-%table#current.table.table-condensed.table-striped.table-hover{data: {path: current_tickets_path}}
-  %caption Current Sprint
+.table-name.green-border
+  = '#CurrentSprint'
+
+%br
+%br
+
+%table#current{data: {path: current_tickets_path}}
   %tr
-    %th Project
-    %th Name
-    %th Points
-    %th Real hours
-    %th User
-    %th
+    %th.project-row
+      Project
+    %th.name-row
+      Name
+    %th.points-row
+      Points
+    %th.hours-row
+      Real hours
+    %th.user-row
+      User
+    %th.control-row
 
   - @current_tickets.each do |ticket|
     %tr

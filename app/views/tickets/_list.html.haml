@@ -1,15 +1,26 @@
 - dashboard ||= false
-%table#pending.table.table-condensed.table-striped.table-hover{'data-path' => (dashboard ? pending_tickets_path : nil)}
-  %caption Pending Tickets
+
+.table-name.green-border
+  = '#PendingTickets'
+
+%br
+%br
+
+%table#pending{'data-path' => (dashboard ? pending_tickets_path : nil)}
   %tr
-    %th Project
-    %th Name
+    %th.project-row
+      Project
+    %th.name-row
+      Name
     - unless dashboard
       %th Sprint
-    %th Points
-    %th Real hours
-    %th User
-    %th
+    %th.points-row
+      Points
+    %th.hours-row
+      Real hours
+    %th.user-row
+      User
+    %th.control-row
 
   - @tickets.each do |ticket|
     %tr

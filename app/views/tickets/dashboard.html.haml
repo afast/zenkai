@@ -1,9 +1,30 @@
-%h1.title Dashboard
--if @pending.any?
-  .row
-    .col-lg-12.scrollable= render 'pending_estimate'
+.big-separator
+
 .row
-  .col-lg-10= render 'list', dashboard: true
-  .col-lg-2= render 'small_form'
+  .small-7.columns
+    .light.panel.radius
+      Avances..
+  .small-5.columns
+    .panel.radius
+      = render 'small_form'
+
+
 .row
-  .col-lg-12= render 'current_sprint'
+  .small-12.columns
+    .panel.radius
+      - if @pending.any?
+        = render partial: 'pending_estimate'
+      - else
+        .no-tickets
+          = image_tag 'beer.png', width: '120px', height: '120px'
+          Nice! You don't have any ticket to estimate.
+
+.row
+  .small-12.columns
+    .light.panel.radius
+      = render 'list', dashboard: true
+
+.row
+  .small-12.columns
+    .light.panel.radius
+      = render 'current_sprint'
