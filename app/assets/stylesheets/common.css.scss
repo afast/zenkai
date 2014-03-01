@@ -48,3 +48,17 @@ body{
     width: 10%;
   }
 }
+
+#user-table {
+  width: 100%;
+  text-align: left;
+  .name-row {
+    width: 40%;
+  }
+  .email-row {
+    width: 40%;
+  }
+  .control-row {
+    width: 20%;
+  }
+}

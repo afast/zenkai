@@ -1,11 +1,14 @@
-%h1.title Listing users
 .row
-  .col-lg-12
-    %table.table.table-condensed.table-striped.table-hover
+  .small-12.columns
+    .main-page-title
+      = '#Users'
+    %table#user-table
       %tr
-        %th Name
-        %th Email
-        %th
+        %th.name-row
+          Name
+        %th.email-row
+          Email
+        %th.control-row
 
       - @users.each do |user|
         %tr
