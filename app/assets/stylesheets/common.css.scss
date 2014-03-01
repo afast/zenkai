@@ -20,18 +20,31 @@ body{
   max-width: 1100wpx
 }
 
-.project-pending-row{
-  width: 20%;
-}
-
-.name-pending-row{
-  width: 70%;
-}
-
-.points-pending-row{
-  width: 10%;
-}
-
 .light{
   background-color: #ffffff;
+}
+
+.main-page-title {
+  font-size: 35px;
+  padding-top: 45px;
+  width: 50%;
+  height: 130px;
+  color: #8c8c8c;
+}
+
+#my-estimates {
+  width: 100%;
+  text-align: left;
+  .user-row {
+    width: 20%;
+  }
+  .ticket-row {
+    width: 50%;
+  }
+  .estimation-row {
+    width: 20%;
+  }
+  .control-row {
+    width: 10%;
+  }
 }

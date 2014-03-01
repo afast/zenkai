@@ -1,13 +1,16 @@
-%h1.title Listing Estimates
-
 .row
-  .col-lg-12
-    %table.table.table-condensed.table-striped.table-hover
+  .small-12.columns
+    .main-page-title
+      = '#ListingEstimates'
+    %table#my-estimates
       %tr
-        %th Ticket
-        %th User
-        %th Estimate
-        %th
+        %th.ticket-row
+          Ticket
+        %th.user-row
+          User
+        %th.estimation-row
+          Estimate
+        %th.control-row
 
       - @user_ticket_estimates.each do |user_ticket_estimate|
         %tr
