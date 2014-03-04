@@ -110,3 +110,22 @@ body{
 .progress-bar-danger{
   background-color: $red
 }
+
+.separator-line {
+  width: 100%;
+  height: 2px;
+  background-color: #aeaeae;
+}
+
+.footer-links {
+  text-align: right;
+  font-size: 18px;
+  padding-top: 70px;
+}
+
+.footer-links a {
+  color: #787878;
+}
+.footer-links a:hover {
+  color: #414141;
+}
