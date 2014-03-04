@@ -80,23 +80,33 @@ body{
   }
 }
 
-.row#progress-bar {
+#progress-bar {
   background: none;
   padding: 0;
 }
 
+.progress-bar {
+  height: 3em;
+  border-radius: 0.3em;
+}
+
+.progress {
+  height: 3.4em;
+  border-radius: 0.3em;
+}
+
 .progress-bar-success{
-  background-color: #5cb85c
+  background-color: $green
 }
 
 .progress-bar-info{
-  background-color: #5bc0de
+  background-color: $blue
 }
 
 .progress-bar-warning{
-  background-color: #f0ad4e
+  background-color: $yellow
 }
 
 .progress-bar-danger{
-  background-color: #d9534f
+  background-color: $red
 }

@@ -1,28 +1,7 @@
 .big-separator
 
--if target_points = Sprint.current!.target_points
-  .row.jumbotron#progress-bar
-    %h3.title= "Points for this Sprint! #{target_points}"
-    .progress
-      .progress-bar{ class: class_for_progress_bar(avg = Sprint.current!.completed_avg), 'role' => 'progressbar', 'aria-valuemin' => '0', 'aria-valuemax' => '100', 'style' => "width: #{avg}%" }
-
-%h1.title Dashboard
-
--if @pending.any?
-  .row
-    .col-lg-12.scrollable= render 'pending_estimate'
-
 .row
-  .large-7.columns
-    .light.panel.radius
-      Avances..
-  .large-5.columns
-    .panel.radius
-      = render 'small_form'
-
-
-.row
-  .large-12.columns
+  .large-6.columns
     .panel.radius
       - if @pending.any?
         = render partial: 'pending_estimate'
@@ -30,6 +9,10 @@
         .no-tickets
           = image_tag 'beer.png', width: '120px', height: '120px'
           Nice! You don't have any ticket to estimate.
+  .large-6.columns
+    .light.panel.radius
+      .progress-bar-div
+        = render partial: 'progress_bar'
 
 .row
   .large-12.columns
@@ -40,3 +23,8 @@
   .large-12.columns
     .light.panel.radius
       = render 'current_sprint'
+
+.row
+  .large-6.large-offset-6.columns
+    .panel.radius
+      = render 'small_form'

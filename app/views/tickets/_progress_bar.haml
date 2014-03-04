@@ -1,0 +1,10 @@
+- if target_points = Sprint.current!.target_points
+  .row
+    .small-12
+      .sprint-goal
+        = "Points for this Sprint: #{target_points}"
+      %br
+      %hr
+      .jumbotron#progress-bar
+        .progress
+          .progress-bar{ class: "#{class_for_progress_bar(avg = Sprint.current!.completed_avg)} progress-bar", 'role' => 'progressbar', 'aria-valuemin' => '0', 'aria-valuemax' => '100', 'style' => "width: #{avg}%" }

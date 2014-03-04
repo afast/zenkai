@@ -17,9 +17,20 @@ div#fast_entry {
 }
 
 .no-tickets {
-  font-size: 30px;
+  font-size: 1.4em;
   color: #808080;
+  height: 5.5em;
   text-align: center;
+}
+
+.progress-bar-div {
+  height: 7.5em;
+  .sprint-goal {
+    font-size: 1.3em;
+    color: #808080;
+    width: 100%;
+    text-align: center;
+  }
 }
 
 .table-name {
