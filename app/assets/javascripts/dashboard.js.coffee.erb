@@ -40,9 +40,12 @@ $ ->
   else
     $('head').append($('<link rel="icon" type="image/ico" href="favicon.ico"/>'))
 
+  $(document).on 'keypress', 'input,select', (event) ->
+    event.stopPropagation()
+
   $(document).on 'keypress', (event) ->
-    $('.modal').modal('hide').remove()
     if event.keyCode == 104
+      $('.modal').modal('hide').remove()
       $.get "/sprint_users/new", (data)->
         modal = $(data).modal()
         $(modal).on 'ajax:success', ()->

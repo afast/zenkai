@@ -47,4 +47,16 @@ module TicketsHelper
   def estimated_json(ticket)
     ticket.user_ticket_estimates.map { |ute| {name: ute.user.full_name, points: ute.points} }.to_json
   end
+
+  def class_for_progress_bar(avg)
+    if avg.between?(0, 25)
+      'progress-bar-danger'
+    elsif avg.between?(25, 50)
+      'progress-bar-warning'
+    elsif avg.between?(50, 99)
+      'progress-bar-info'
+    else
+      'progress-bar-success'
+    end
+  end
 end

@@ -4,6 +4,7 @@
   %tr
     %th Start
     %th End
+    %th Target Points
     %th
     %th
     %th
@@ -12,6 +13,7 @@
     %tr
       %td= sprint.start
       %td= sprint.sprint_end
+      %td= sprint.target_points
       %td= link_to 'Show', sprint
       %td= link_to 'Edit', edit_sprint_path(sprint)
       %td= link_to 'Destroy', sprint, :method => :delete, :data => { :confirm => 'Are you sure?' }
