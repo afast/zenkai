@@ -28,14 +28,14 @@ $ ->
 
   $('.re-estimate').on 'ajax:success', () ->
     $.get $('#pending').data('path'), (data) ->
-      $('#pending').html(data)
+      $('#pending').closest('div.panel').html(data)
       $(".best_in_place").best_in_place()
 
   $('form').on 'ajax:success', ()->
     toggleAlert('Operation Successful')
 
     $.get $('#pending_estimate').data('path'), (data) ->
-      $('#pending_estimate').html(data)
+      $('#pending_estimate').closest('div.panel').html(data)
       $(".best_in_place").best_in_place()
 
   $('form').on 'ajax:error', ()->

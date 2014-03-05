@@ -15,25 +15,26 @@ setTitle = () ->
 
 $ ->
   $(document).on 'ajax:success', '.best_in_place', ()->
-    $table = $(this).closest('table')
-    refreshTable $table
+    $panel = $(this).closest('div.panel')
+    refreshPanel $panel
 
   $(document).on 'ajax:success', '.restimate', ()->
-    $table = $(this).closest('table')
-    refreshTable $table
+    $panel = $(this).closest('div.panel')
+    refreshPanel $panel
 
-  refreshTable = ($table) ->
+  refreshPanel = ($panel) ->
+    $table = $panel.find('table')
     if $table.data('path')
       $.get $table.data('path'), (data)->
-        $table.replaceWith data
+        $panel.html data
         $('.best_in_place').best_in_place()
         setTitle()
 
   if $('body.dashboard').size() > 0
     setInterval () ->
-      refreshTable $('table#pending_estimate')
-      refreshTable $('table#pending')
-      refreshTable $('table#current')
+      refreshPanel $('table#pending_estimate').closest('div.panel')
+      refreshPanel $('table#pending').closest('div.panel')
+      refreshPanel $('table#current').closest('div.panel')
     , 300000
 
     setTitle()
