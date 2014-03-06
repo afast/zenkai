@@ -46,8 +46,9 @@ $ ->
 
   $(document).on 'keypress', (event) ->
     if event.keyCode == 104
-      $('.modal').modal('hide').remove()
+      $('.reveal-modal').foundation('reveal', 'close').remove()
       $.get "/sprint_users/new", (data)->
-        modal = $(data).modal()
+        $('body').append data
+        modal = $('.reveal-modal').foundation('reveal', 'open')
         $(modal).on 'ajax:success', ()->
-          $(modal).modal('hide')
+          modal.foundation('reveal', 'close')
