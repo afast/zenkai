@@ -19,6 +19,7 @@ class TicketsController < ApplicationController
     scope = Ticket
     scope = scope.where(project_id: params[:project]) if params[:project].present?
     scope = scope.where(user_id: params[:user]) if params[:user].present?
+    scope = scope.search_name(params[:description]) if params[:description].present?
     @from = params[:from].blank? ? (DateTime.now - 1.week) : DateTime.parse(params[:from])
     @sprint_size = params[:sprint_size].blank? ? 1 : params[:sprint_size].to_i
     @sprints = Ticket.report scope, @from, @sprint_size
