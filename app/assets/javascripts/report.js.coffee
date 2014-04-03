@@ -142,3 +142,15 @@ $ ->
       },
       legend: { show:true, location: 'e' }
     }
+
+  if $('#hour_history').size() > 0
+    $.jqplot 'hour_history', [$('#hour_history').data('hour')], {
+      title: 'Hours over time',
+      seriesDefaults: {
+        renderer: jQuery.jqplot.LineRenderer,
+        rendererOptions: {
+          showDataLabels: true
+        }
+      },
+      legend: { show:true, location: 'e' }
+    }

@@ -5,9 +5,21 @@ module SprintsHelper
     }
   end
 
+  def full_hour_history
+    {
+      hour: Sprint.closed.collect(&:total_hours)
+    }
+  end
+
   def sprint_history_for_project(project)
     {
       velocity: Sprint.closed.map { |s| s.total_velocity('tickets.project_id' => project.id) }
+    }
+  end
+
+  def sprint_hour_history_for_project(project)
+    {
+      hour: Sprint.closed.map { |s| s.total_hours('tickets.project_id' => project.id) }
     }
   end
 
