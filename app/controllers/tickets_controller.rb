@@ -7,6 +7,7 @@ class TicketsController < ApplicationController
     @tickets = Ticket.for_sprint(@sprint).by_created_at_desc
     @tickets = @tickets.for_project(params[:project]) if params[:project].present?
     @tickets = @tickets.for_user(params[:user]) if params[:user].present?
+    @tickets = @tickets.search_name(params[:description]) if params[:description].present?
 
     respond_to do |format|
       format.html # index.html.erb
@@ -18,6 +19,7 @@ class TicketsController < ApplicationController
     scope = Ticket
     scope = scope.where(project_id: params[:project]) if params[:project].present?
     scope = scope.where(user_id: params[:user]) if params[:user].present?
+    scope = scope.search_name(params[:description]) if params[:description].present?
     @from = params[:from].blank? ? (DateTime.now - 1.week) : DateTime.parse(params[:from])
     @sprint_size = params[:sprint_size].blank? ? 1 : params[:sprint_size].to_i
     @sprints = Ticket.report scope, @from, @sprint_size

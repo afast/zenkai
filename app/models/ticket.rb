@@ -30,6 +30,9 @@ class Ticket < ActiveRecord::Base
   scope :for_user, -> user {
     where(user_id: user)
   }
+  scope :search_name, -> name {
+    where(Ticket.arel_table[:name].matches("%#{name}%"))
+  }
 
   validates_presence_of :name, :project, :sprint
   validates_uniqueness_of :name
