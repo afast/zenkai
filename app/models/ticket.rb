@@ -39,7 +39,7 @@ class Ticket < ActiveRecord::Base
   scope :pending_estimate_for, -> user {
     estimated = user.user_ticket_estimates.where(ticket_id: Ticket.current).pluck(:ticket_id)
     if estimated.any?
-      current.pending.or(pending_estimate).where('id NOT IN (?)', estimated)
+      current.where("#{pending.where_clauses[0]} OR #{pending_estimate.where_clauses[0]}").where('id NOT IN (?)', estimated)
     else
       current.pending
     end
