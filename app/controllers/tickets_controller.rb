@@ -7,6 +7,7 @@ class TicketsController < ApplicationController
     @tickets = Ticket.for_sprint(@sprint).by_created_at_desc
     @tickets = @tickets.for_project(params[:project]) if params[:project].present?
     @tickets = @tickets.for_user(params[:user]) if params[:user].present?
+    @tickets = @tickets.search_name(params[:description]) if params[:description].present?
 
     respond_to do |format|
       format.html # index.html.erb
