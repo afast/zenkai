@@ -38,7 +38,11 @@ class Ticket < ActiveRecord::Base
 
   scope :pending_estimate_for, -> user {
     estimated = user.user_ticket_estimates.where(ticket_id: Ticket.current).pluck(:ticket_id)
-    estimated.any? ? current.where('id NOT IN (?)', estimated) : current
+    if estimated.any?
+      current.pending.or(pending_estimate).where('id NOT IN (?)', estimated)
+    else
+      current.pending
+    end
   }
 
   validates_presence_of :name, :project, :sprint
