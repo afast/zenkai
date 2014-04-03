@@ -17,6 +17,12 @@ module SprintsHelper
     }
   end
 
+  def sprint_hour_history_for_project(project)
+    {
+      hour: Sprint.closed.map { |s| s.total_hours('tickets.project_id' => project.id) }
+    }
+  end
+
   def full_chart_data(sprints)
     tickets        = sprints.map { |s| s.completed_tickets }.flatten
     total          = tickets.collect(&:real_hours).compact.inject(:+)
