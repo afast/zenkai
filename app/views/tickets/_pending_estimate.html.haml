@@ -22,4 +22,4 @@
         %td.name-pending-row
           = ticket_link_or_name(ticket)
         %td.points-pending-row
-          = best_in_place ticket, :points, { type: :input, nil => 'Not Estimated', path: estimate_ticket_path(ticket) }
+          = best_in_place ticket, :points, { :display_with => lambda { |v| nil }, type: :input, nil => 'Not Estimated', path: estimate_ticket_path(ticket) }

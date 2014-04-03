@@ -130,9 +130,7 @@ class TicketsController < ApplicationController
     @current_tickets = current_user.tickets.for_sprint(Sprint.current!.id)
     @ticket = Ticket.new(sprint: Sprint.current!)
 
-    @pending = Ticket.pending_estimate
-    estimated = current_user.user_ticket_estimates.pluck(:ticket_id)
-    @pending = @pending.where('id NOT IN (?)', estimated) if estimated.any?
+    @pending = Ticket.pending_estimate_for(current_user)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -151,9 +149,7 @@ class TicketsController < ApplicationController
   end
 
   def estimate_pending
-    @pending = Ticket.pending_estimate
-    estimated = current_user.user_ticket_estimates.pluck(:ticket_id)
-    @pending = @pending.where('id NOT IN (?)', estimated) if estimated.any?
+    @pending = Ticket.pending_estimate_for(current_user)
     render partial: 'pending_estimate'
   end
 

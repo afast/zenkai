@@ -34,6 +34,13 @@ class Ticket < ActiveRecord::Base
     where(Ticket.arel_table[:name].matches("%#{name}%"))
   }
 
+  scope :current, where(sprint_id: Sprint.current!)
+
+  scope :pending_estimate_for, -> user {
+    estimated = user.user_ticket_estimates.where(ticket_id: Ticket.current).pluck(:ticket_id)
+    estimated.any? ? current.where('id NOT IN (?)', estimated) : current
+  }
+
   validates_presence_of :name, :project, :sprint
   validates_uniqueness_of :name
 
