@@ -14,6 +14,10 @@ setTitle = () ->
 
 
 $ ->
+  $(document).on 'ajax:success', 'td.ignore', ()->
+    $panel = $(this).closest('div.panel')
+    refreshPanel $panel
+
   $(document).on 'ajax:success', '.best_in_place', ()->
     $panel = $(this).closest('div.panel')
     refreshPanel $panel

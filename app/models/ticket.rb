@@ -80,7 +80,7 @@ class Ticket < ActiveRecord::Base
 
   def estimate!
     if user_ticket_estimates.count >= project.min_estimates.to_i
-      estimates = user_ticket_estimates.collect(&:points)
+      estimates = user_ticket_estimates.collect(&:points).compact
       avg = estimates.compact.sum / estimates.size.to_f
       if avg <= VALID_ESTIMATES[0]
         self.points = VALID_ESTIMATES[0]
@@ -129,7 +129,7 @@ class Ticket < ActiveRecord::Base
   end
 
   def high_estimate_diff
-    points = user_ticket_estimates.collect(&:points)
+    points = user_ticket_estimates.collect(&:points).compact
     return false unless points.size > 1
     if points.include?(1)
       iterate_estimates(points, [[1,3], [1,5], [1,8]])
@@ -138,6 +138,10 @@ class Ticket < ActiveRecord::Base
     elsif points.include?(2)
       [2,5] & points == [2,5]
     end
+  end
+
+  def estimated?
+    points?
   end
 
   private

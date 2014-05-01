@@ -17,6 +17,7 @@ Zenkai::Application.routes.draw do
       put :estimate
       put :re_estimate
       get :estimates
+      post :ignore
     end
   end
   resources :projects

@@ -120,8 +120,12 @@ class TicketsController < ApplicationController
   end
 
   def re_estimate
-    ticket = Ticket.find(params[:id])
-    ticket.estimate! if ticket
+    Ticket.find(params[:id]).estimate!
+    render nothing: true
+  end
+
+  def ignore
+    Ticket.find(params[:id]).user_ticket_estimates.create(user: current_user)
     render nothing: true
   end
 
@@ -130,7 +134,7 @@ class TicketsController < ApplicationController
     @current_tickets = current_user.tickets.for_sprint(Sprint.current!.id)
     @ticket = Ticket.new(sprint: Sprint.current!)
 
-    @pending = Ticket.pending_estimate_for(current_user)
+    @pending = Ticket.pending_estimate_for(current_user).sort { |a,b| (a.estimated? == b.estimated?) ? -1 : 1 }
 
     respond_to do |format|
       format.html # index.html.erb

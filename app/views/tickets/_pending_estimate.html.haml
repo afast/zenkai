@@ -13,6 +13,7 @@
         Name
       %th.points-row
         Points
+      %th
   %tbody
     - @pending.each do |ticket|
       %tr
@@ -23,3 +24,5 @@
           = ticket_link_or_name(ticket)
         %td.points-pending-row
           = best_in_place ticket, :points, { :display_with => lambda { |v| nil }, type: :input, nil => 'Not Estimated', path: estimate_ticket_path(ticket) }
+        %td.ignore
+          = link_to 'Ignore', ignore_ticket_path(ticket), remote: true, method: :post if ticket.estimated?
