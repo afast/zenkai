@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :name, :password, :password_confirmation, :remember_me,
-    :approved
+    :approved, :project_ids
 
   def self.load_seeds
     if User.where(email: 'admin@moove-it.com').empty?
@@ -47,7 +47,7 @@ class User < ActiveRecord::Base
   end
 
   def full_name
-    name || email.gsub(/@.+/, '')
+    name.presence || email.gsub(/@.+/, '')
   end
 
   def estimation(value, array)

@@ -15,4 +15,8 @@
     = f.label :name, class: "label-control"
     = f.text_field :name, class: "form-control"
   .form-group
+    = f.label :project_ids, class: "label-control"
+    = f.select :project_ids, options_from_collection_for_select(Project.all, :id, :name, selected: @user.project_ids), {},
+      {multiple: true, class: "form-control"}
+  .form-group
     = f.submit class: 'btn btn-primary'

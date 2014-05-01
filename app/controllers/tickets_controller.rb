@@ -165,6 +165,6 @@ class TicketsController < ApplicationController
   private
 
   def get_projects
-    @projects = Project.all
+    @projects ||= current_user.projects
   end
 end
