@@ -13,6 +13,7 @@
           %li= msg
 
   = f.text_field :name, class: 'form-control', placeholder: 'Ticket ID'
+  = f.text_field :description, class: 'form-control', placeholder: 'Description'
   = f.select :project_id, options_from_collection_for_select(@projects, :id, :abbreviation)
   %br
   %br

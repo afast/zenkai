@@ -13,6 +13,9 @@
     = f.label :sprint_id, class: "col-lg-2 control-label"
     .col-lg-8= f.select :sprint_id, options_from_collection_for_select(Sprint.sorted, :id, :date_span, @ticket.sprint_id)
   .form-group
+    = f.label :description, class: "col-lg-2 control-label"
+    .col-lg-8= f.text_field :description, class: "form-control"
+  .form-group
     = f.label :name, class: "col-lg-2 control-label"
     .col-lg-8= f.text_field :name, class: "form-control"
   .form-group
