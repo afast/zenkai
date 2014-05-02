@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby '2.0.0'
+
 gem 'rails', '3.2.13'
 
 # Bundle edge Rails instead:
@@ -43,7 +45,7 @@ group :test do
 end
 
 group :production do
-  gem 'thin'
+  gem 'unicorn'
   gem 'pg'
   gem 'wkhtmltopdf-heroku'
 end
@@ -55,7 +57,6 @@ end
 # gem 'jbuilder'
 
 # Use unicorn as the app server
-# gem 'unicorn'
 
 # Deploy with Capistrano
 # gem 'capistrano'
