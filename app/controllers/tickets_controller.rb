@@ -94,7 +94,7 @@ class TicketsController < ApplicationController
       render nothing: true
     else
       respond_to do |format|
-        format.html { redirect_to tickets_url }
+        format.html { redirect_to tickets_url(params.except(:action, :controller, :_method, :authenticity_token, :utf8, :id)) }
         format.json { head :no_content }
       end
     end
