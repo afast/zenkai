@@ -5,13 +5,10 @@
       %h2 Sign in
       %hr
       = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-
-        = devise_error_messages!
-
+        = flash[:alert]
         .form-group
           = f.label :email, class: "control-label"
           = f.email_field :email, class: "form-control"
-
         .form-group
           = f.label :password, class: "control-label"
           = f.password_field :password, class: "form-control"
