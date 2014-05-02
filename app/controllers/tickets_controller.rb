@@ -153,7 +153,7 @@ class TicketsController < ApplicationController
   end
 
   def estimate_pending
-    @pending = Ticket.pending_estimate_for(current_user)
+    @pending = Ticket.pending_estimate_for(current_user).sort { |a,b| (a.estimated? == b.estimated?) ? -1 : 1 }
     render partial: 'pending_estimate'
   end
 
