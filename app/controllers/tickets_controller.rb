@@ -134,7 +134,7 @@ class TicketsController < ApplicationController
     @current_tickets = current_user.tickets.for_sprint(Sprint.current!.id)
     @ticket = Ticket.new(sprint: Sprint.current!)
 
-    @pending = Ticket.pending_estimate_for(current_user).sort { |a,b| (a.estimated? == b.estimated?) ? -1 : 1 }
+    @pending = Ticket.pending_estimate_for(current_user).sort { |a| a.estimated? ? 1 : -1 }
 
     respond_to do |format|
       format.html # index.html.erb
@@ -153,7 +153,7 @@ class TicketsController < ApplicationController
   end
 
   def estimate_pending
-    @pending = Ticket.pending_estimate_for(current_user).sort { |a,b| (a.estimated? == b.estimated?) ? -1 : 1 }
+    @pending = Ticket.pending_estimate_for(current_user).sort { |a| a.estimated? ? 1 : -1 }
     render partial: 'pending_estimate'
   end
 
