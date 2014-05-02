@@ -46,7 +46,7 @@
             %td{colspan: 5}= sprint_info params[:from], params[:sprint_size], index + 1
           - sprint.tickets.where(@conditions).complete.each do |ticket|
             %tr
-              %td{style: "color: #{ticket.project_color}"}= ticket.project_name
+              %td{style: "color: #{ticket.project and ticket.project_color}"}= ticket.project_name
               %td= ticket_link_or_name(ticket)
               %td= '%.2f' % ticket.velocity
               %td= friendly_user_name ticket.user
